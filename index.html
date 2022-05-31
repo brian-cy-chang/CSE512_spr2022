@@ -93,8 +93,7 @@ var padding = 40
 margin = ({top: 20, right: 30, bottom: 30, left: 40})
 
 function renderMap(data) { 
-  svg.append("g")
-    .selectAll("path")
+  svg.selectAll("path")
     .data(data.features)
     .enter()
     .append('path')
