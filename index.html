@@ -92,33 +92,34 @@ if (usa) {
 var padding = 40
 margin = ({top: 20, right: 30, bottom: 30, left: 40})
 
-function renderMap(data) { 
+// Request the GeoJSON
+d3.json(geoJsonUrl).then(geojson => {
+  // Tell D3 to render a path for each GeoJSON feature
   svg.selectAll("path")
-    .data(data.features)
+    .data(geojson.features)
     .enter()
-    .append('path')
-    .attr('d', pathGenerator)
+    .append("path")
+    .attr("d", pathGenerator) // This is where the magic happens
     .style("stroke", "#B2BEB5")
-	.style("stroke-width", "1.5")
-    .attr("fill", "white");
-};
-	
-function renderCoords(data) {
-  svg.selectAll("circle")
-    .data(data)
-    .enter()
-    .append("circle")
-    .attr("cx", d=>usaProjection ([d.lon,d.lat])[0])
-    .attr("cy", d=>usaProjection ([d.lon,d.lat])[1])
-    .attr("r", 3);
-};
+	  .style("stroke-width", "1.5")
+    .attr("fill", "white") // Color uses to fill in the lines
+});
 
-d3.json("https://gist.githubusercontent.com/spiker830/e0d1b7950ced31369c903bed0cead7b1/raw/702c72e0ca5a1be95f84a50a58cfa6d4d6400f3f/us_features.json", function(geojson) {
-   d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv", function(csv) {
-       renderMap(geojson);
-       renderCoords(csv);
-    })
- })
+d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv", function(data) {
+  svg.selectAll("circle")
+        	.data(data)
+        	.enter()
+        	.append("circle")
+        	.attr("cx", function(d) {
+        		return pathGenerator([d.lon, d.lat])[0];
+        	})
+        	.attr("cy", function(d) {
+        		return pathGenerator([d.lon, d.lat])[1];
+        	})
+        	.attr("r", 2)
+        		.style("fill", "rgb(217,91,67)")
+        		.style("opacity", 0.85)
+});
 
 d3.select("svg")
 	.append("text")
