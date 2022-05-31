@@ -91,6 +91,18 @@ if (usa) {
 
 var padding = 40
 margin = ({top: 20, right: 30, bottom: 30, left: 40})
+
+function renderMap(data) { 
+  svg.append("g")
+    .selectAll("path")
+    .data(data.features)
+    .enter()
+    .append('path')
+    .attr('d', pathGenerator)
+    .style("stroke", "#B2BEB5")
+	.style("stroke-width", "1.5")
+    .attr("fill", "white");
+};
 	
 function renderCoords(data) {
   svg.selectAll("circle")
@@ -102,18 +114,12 @@ function renderCoords(data) {
     .attr("r", 3);
 };
 
-// Request the GeoJSON
-d3.json(geoJsonUrl, function(geojson) {
-  // Tell D3 to render a path for each GeoJSON feature
-  svg.selectAll("path")
-    .data(geojson.features)
-    .enter()
-    .append("path")
-    .attr("d", pathGenerator) // This is where the magic happens
-    .style("stroke", "#B2BEB5")
-	  .style("stroke-width", "1.5")
-    .attr("fill", "white") // Color uses to fill in the lines
-});
+ d3.json(geoJsonUrl, function(geojson) {
+   d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv", function(csv) {
+       renderMap(geojson);
+       renderCoords(csv);
+    })
+ })
 
 d3.select("svg")
 	.append("text")
