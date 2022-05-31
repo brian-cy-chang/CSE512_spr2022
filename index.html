@@ -105,7 +105,7 @@ d3.json(geoJsonUrl).then(geojson => {
     .attr("fill", "white") // Color uses to fill in the lines
 });
 
-d3.csv("https://github.com/biribirii/CSE512_spr2022/blob/815548f869c66fd32743a1d9d09aa918a89bf0b2/df_all.csv", function(data) {
+d3.csv("df_all.csv", function(data) {
   svg.selectAll("circle")
         	.data(data)
         	.enter()
