@@ -120,8 +120,8 @@ function renderCoords(data) {
     .data(data)
     .enter()
     .append("circle")
-    .attr("cx", d=>projection([d.lon,d.lat])[0])
-    .attr("cy", d=>projection([d.lon,d.lat])[1])
+    .attr("cx", d=>usaProjection ([d.lon,d.lat])[0])
+    .attr("cy", d=>usaProjection ([d.lon,d.lat])[1])
     .attr("r", 3);
 };
 	
