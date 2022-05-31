@@ -105,19 +105,19 @@ d3.json(geoJsonUrl).then(geojson => {
     .attr("fill", "white") // Color uses to fill in the lines
 });
 
-var title = d3.select("body").append("svg")
-    .attr("class", "text")
-    .attr("width", width/2)
-    .attr("height", height/2)
-
-    title.append("text")
-    	.attr("x", (width/2))
+svg.append("g")
+	.attr("class", "title")
+	.attr("x", (width/2))
 	.attr("y", 0 - (margin.top / 2))
-    	.attr("text-anchor", "middle")
+    	
+svg.selectAll("text")
+	.enter()
+	.append("text")
+	.attr("text-anchor", "middle")
     	.style("font-size", "2.8vh")
 	.style('fill', 'black')
     	.text("Sentiment in the United States");
-
+    	
 </script>
 
 <div style="text-align: center;"><img src='https://github.com/biribirii/CSE512_spr2022/blob/main/transformer_sentiment_pie.jpg?raw=true' alt='piechart'></div>  
