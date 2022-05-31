@@ -108,7 +108,7 @@ d3.json(geoJsonUrl).then(geojson => {
 svg.append("g")
 	.attr("class", "title")
 	.attr("width", (width/2))
-	.attr("height", 0 - (margin.top / 2))
+	.attr("height", (height/4))
 	.enter()
     	
 svg.selectAll("text")
