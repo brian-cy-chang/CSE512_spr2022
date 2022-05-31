@@ -125,7 +125,7 @@ function renderCoords(data) {
     .attr("r", 3);
 };
 	
-d3.csv("file", function("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv") {
+d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv", function(csv) {
        renderCoords(csv);
 })
 	
