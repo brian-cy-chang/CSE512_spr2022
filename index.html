@@ -52,8 +52,6 @@ p {
 
 // var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 var width = window.innerWidth;
-	
-var color = d3.scaleLinear().range(["rgb(255,0,0)","rgb(0,0,255)","rgb(211,211,211)"]);
 
 // Setting up the svg element for D3 to draw in
 let height = width / 1.6
@@ -91,28 +89,6 @@ if (usa) {
 var padding = 40
 margin = ({top: 20, right: 30, bottom: 30, left: 40})
 
-function renderMap(data) {
-  svg.append("g")
-    .selectAll("path")
-    .data(data.features)
-    .enter()
-    .append('path')
-    .attr('d', usaMap)
-    .style("stroke", "#B2BEB5")
-	  .style("stroke-width", "1.5")
-    .attr("fill", "white");
-};
-
-function renderCity(data) {
-  svg.selectAll("circle")
-    .data(data)
-    .enter()
-    .append("circle")
-    .attr("cx", d=>projection([d.lon,d.lat])[0])
-    .attr("cy", d=>projection([d.lon,d.lat])[1])
-    .attr("r", 3);
-};
-
 // Request the GeoJSON
 d3.json("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/northamerica.json").then(geojson => {
   // Tell D3 to render a path for each GeoJSON feature
@@ -148,13 +124,7 @@ d3.select("svg")
       	.attr('fill', 'black')
         .text("Sentiment in the United States");
 
-projection_test = d3.geoMercator()
-	.scale([ width / 1.5 ])
-  	.translate([ width / 2, height / 2 ])	
-
 d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv", function(data) {
-  color.domain(["POSITIVE","NEGATIVE","NEUTRAL"]);
-
   svg.selectAll("circle")
     .data(data)
     .enter()
@@ -168,6 +138,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
     .attr("r", 2)
     .style("fill", function(d) {
         var value = d.label;
+        var color = d3.scaleLinear().domain(["POSITIVE","NEGATIVE","NEUTRAL"]).range(["rgb(255,0,0)","rgb(0,0,255)","rgb(211,211,211)"]);
 
         if (value) {
         //If value exists…
