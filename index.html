@@ -144,10 +144,10 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
         var value = d.label;
         // var color = d3.scaleLinear().domain(["POSITIVE","NEGATIVE","NEUTRAL"]).range(["rgb(255,0,0)","rgb(0,0,255)","rgb(211,211,211)"]);
 
-        if (value == "POSITIVE") {
+        if (value == POSITIVE) {
         //If value exists…
         return "rgb(255,0,0)"
-      } else if (value == "NEGATIVE"){
+      } else if (value == NEGATIVE){
         //If value is undefined…
         return "rgb(0,0,255)"
         }
