@@ -141,13 +141,13 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
     })
     .attr("r", 2)
     .style("fill", function(d) {
-        var value = d.label;
+        var x = d.label;
         // var color = d3.scaleLinear().domain(["POSITIVE","NEGATIVE","NEUTRAL"]).range(["rgb(255,0,0)","rgb(0,0,255)","rgb(211,211,211)"]);
 
-        if (value == POSITIVE) {
+        if (x == "POSITIVE") {
         //If value exists…
         return "rgb(255,0,0)"
-      } else if (value == NEGATIVE){
+      } else if (x == "NEGATIVE"){
         //If value is undefined…
         return "rgb(0,0,255)"
         }
