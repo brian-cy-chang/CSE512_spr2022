@@ -153,9 +153,8 @@ projection_test = d3.geoMercator()
   	.translate([ width / 2, height / 2 ])	
 
 d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv", function(data) {
-color.domain([0,1,2]);})
-
-svg.selectAll("circle")
+color.domain([0,1,2]);
+	svg.selectAll("circle")
         	.data(data)
         	.enter()
         	.append("circle")
@@ -180,6 +179,8 @@ svg.selectAll("circle")
 
           )
         		.style("opacity", 0.85)
+
+});
 
 
 </script>
