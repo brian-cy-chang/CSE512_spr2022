@@ -62,7 +62,7 @@ let svg = d3.select("body").append("svg")
 
 // A projection tells D3 how to orient the GeoJSON features
 let usaProjection = d3.geoAlbers()
-  .scale(width / 1.4)
+  .scale(width / 1.5)
   .translate([width/2, height/2])
 let europeProjection = d3.geoMercator()
   .center([ 13, 52 ])
@@ -113,6 +113,18 @@ function renderCity(data) {
 
 // Request the GeoJSON
 d3.json("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/northamerica.json").then(geojson => {
+  // Tell D3 to render a path for each GeoJSON feature
+  svg.selectAll("path")
+    .data(geojson.features)
+    .enter()
+    .append("path")
+    .attr("d", pathGenerator) // This is where the magic happens
+    .style("stroke", "#B2BEB5")
+	  .style("stroke-width", "1.5")
+    .attr("fill", "white") // Color uses to fill in the lines
+});
+
+d3.json(geoJsonUrl).then(geojson => {
   // Tell D3 to render a path for each GeoJSON feature
   svg.selectAll("path")
     .data(geojson.features)
