@@ -43,10 +43,10 @@ p {
       There has been growing political division between Democrats and Republicans, the two major political parties in the United States, the past decade. At a time in which Republicans are pushing to reverse Roe V. Wade, block gun control, and continue gerrymandering, it is paramount that Democrats and President Biden earn votes on the campaign trail leading into the 2022 mid-term elections and the 2024 presidential election. To gain insight into how Americans feel about current domestic and foreign issues, we performed sentiment analysis of Tweets about the 2022 State of the Union (SOTU).
     </p>
   </main>
-  
+
   <!-- Uncomment if using d3: -->
 
-<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://d3js.org/d3.v6.min.js"></script>
 
 <!-- style type="text/css">
 </style-->
@@ -92,49 +92,50 @@ if (usa) {
 var padding = 40
 margin = ({top: 20, right: 30, bottom: 30, left: 40})
 
-// Request the GeoJSON
-d3.json(geoJsonUrl).then(geojson => {
-  // Tell D3 to render a path for each GeoJSON feature
-  svg.selectAll("path")
-    .data(geojson.features)
+function renderMap(data) {
+  svg.append("g")
+    .selectAll("path")
+    .data(data.features)
     .enter()
-    .append("path")
-    .attr("d", pathGenerator) // This is where the magic happens
+    .append('path')
+    .attr('d', pathGenerator)
     .style("stroke", "#B2BEB5")
 	  .style("stroke-width", "1.5")
-    .attr("fill", "white") // Color uses to fill in the lines
-});
+    .attr("fill", "white");
+};
 
-d3.csv("df_all.csv", function(data) {
+function renderCity(data) {
   svg.selectAll("circle")
-        	.data(data)
-        	.enter()
-        	.append("circle")
-        	.attr("cx", function(d) {
-        		return usaProjection([d.lon, d.lat])[0];
-        	})
-        	.attr("cy", function(d) {
-        		return usaProjection([d.lon, d.lat])[1];
-        	})
-        	.attr("r", 2)
-        		.style("fill", "rgb(217,91,67)")
-        		.style("opacity", 0.85)
-});
+    .data(data)
+    .enter()
+    .append("circle")
+    .attr("cx", d=>projection([d.lon,d.lat])[0])
+    .attr("cy", d=>projection([d.lon,d.lat])[1])
+    .attr("r", 2)
+    .style("fill", "rgb(217,91,67)")
+    .style("opacity", 0.85);
+};
+
+d3.json("https://gist.githubusercontent.com/spiker830/e0d1b7950ced31369c903bed0cead7b1/raw/702c72e0ca5a1be95f84a50a58cfa6d4d6400f3f/us_features.json", function(geojson) {
+  d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv", function(csv) {
+      renderMap(geojson);
+      renderCity(csv);
+   })
+})
 
 d3.select("svg")
 	.append("text")
 	.attr("x", (width/2))
-      	.attr("y", (margin.top*2.5))
+      	.attr("y", (margin.top*3.5))
         .attr("text-anchor", "middle")
         .attr("font-size", "2.2vh")
 	.attr("font-family", "Helvetica")
       	.attr('fill', 'black')
         .text("Sentiment in the United States");
 
-	
 </script>
 
-<div style="text-align: center;"><img src='https://github.com/biribirii/CSE512_spr2022/blob/main/transformer_sentiment_pie.jpg?raw=true' alt='piechart'></div>  
+<div style="text-align: center;"><img src='https://github.com/biribirii/CSE512_spr2022/blob/main/transformer_sentiment_pie.jpg?raw=true' alt='piechart'></div>
 
 </body>
 </html>
