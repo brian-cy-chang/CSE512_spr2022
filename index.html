@@ -123,6 +123,10 @@ d3.select("svg")
 	.attr("font-family", "Helvetica")
       	.attr('fill', 'black')
         .text("Sentiment in the United States");
+	
+d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv", function(data) {
+	console.log(data)
+}
 
 d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv", function(data) {
   svg.selectAll("circle")
