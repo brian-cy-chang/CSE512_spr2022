@@ -137,32 +137,6 @@ d3.select("svg")
       	.attr('fill', 'black')
         .text("Sentiment in the United States");
 
-d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv", function(data) {
-  svg.selectAll("circle")
-        	.data(data)
-        	.enter()
-        	.append("circle")
-        	.attr("cx", function(d) {
-        		return projection([d.lon, d.lat])[0];
-        	})
-        	.attr("cy", function(d) {
-        		return projection([d.lon, d.lat])[1];
-        	})
-        	.attr("r", 2)
-        		.style("fill", "rgb(217,91,67)")
-        		.style("opacity", 0.85)
-});
-
-function renderCoords(data) {
-  svg.selectAll("circle")
-    .data(data)
-    .enter()
-    .append("circle")
-    .attr("cx", d=>usaProjection([d.lon,d.lat])[0])
-    .attr("cy", d=>usaProjection ([d.lon,d.lat])[1])
-    .attr("r", 3);
-};
-
 d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv".then(csv {
        svg.selectAll("circle")
     	.data(data)
