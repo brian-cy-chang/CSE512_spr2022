@@ -46,6 +46,7 @@ div.tooltip {
 	padding: 0;
 	top: 2vw;
 	left: 2vw;
+	translate: (-2vw, 2vw)
 }
 </style>
 
@@ -219,8 +220,8 @@ var legend = d3.select("body").append("svg")
      			.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
   	legend.append("rect")
-   		.attr("width", (width/400))
-   		.attr("height", (height/400))
+   		.attr("width", (width/200))
+   		.attr("height", (height/200))
    		.style("fill", color);
 
   	legend.append("text")
