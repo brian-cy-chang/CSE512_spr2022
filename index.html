@@ -136,17 +136,17 @@ d3.select("svg")
       	.attr('fill', 'black')
         .text("Sentiment in the United States");
 
-d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv", function(csv) {
+d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv".then(data => {
        svg.selectAll("circle")
-    	.data(csv)
+    	.data(data)
     	.enter()
     	.append("circle")
     	.attr("cx", d=>pathGenerator([d.lon,d.lat])[0])
     	.attr("cy", d=>pathGenerator ([d.lon,d.lat])[1])
     	.attr("r", 2)
-       	.style("fill", "rgb(217,91,67)")	
-	.style("opacity", 0.85)
-});
+       	.style("fill", "rgb(217,91,67)")
+	.style("opacity", 0.85);
+}));
 
 </script>
 
