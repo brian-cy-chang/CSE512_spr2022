@@ -61,7 +61,7 @@ let svg = d3.select("body").append("svg")
     .attr("height", height/1.2)
 
 // A projection tells D3 how to orient the GeoJSON features
-let usaProjection = d3.geoAlbersUsa()
+let usaProjection = d3.geoAlbers()
   .scale(width / 1.4)
   .translate([width/2, height/2])
 let europeProjection = d3.geoMercator()
@@ -144,11 +144,11 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
     	.enter()
     	.append("circle")
       	.attr("cx", function(d) {
-		return projection_test([d.lon, d.lat])[0];
+		return usaProjection([d.lon, d.lat])[0];
 	})
 
       	.attr("cy", function(d) {
-		return projection_test([d.lon, d.lat])[1];
+		return usaProjection([d.lon, d.lat])[1];
 	})
 
     	.attr("r", 2)
