@@ -133,7 +133,17 @@ d3.json(geoJsonUrl).then(geojson => {
     .attr("d", pathGenerator) // This is where the magic happens
     .style("stroke", "#B2BEB5")
 	  .style("stroke-width", "1.5")
-    .attr("fill", "white") // Color uses to fill in the lines
+    .attr("fill", "white")// Color uses to fill in the lines
+	
+select("svg")
+	.append("text")
+	.attr("x", (width/2))
+      	.attr("y", (margin.top*3.5))
+        .attr("text-anchor", "middle")
+        .attr("font-size", "2.2vh")
+	.attr("font-family", "Helvetica")
+      	.attr('fill', 'black')
+        .text("Sentiment in the United States");
 });
 
 d3.select("svg")
