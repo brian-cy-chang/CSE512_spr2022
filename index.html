@@ -52,6 +52,8 @@ p {
 
 // var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 var width = window.innerWidth;
+	
+var color = d3.scaleLinear().range(["rgb(255,0,0)","rgb(0,0,255)","rgb(211,211,211)"]);
 
 // Setting up the svg element for D3 to draw in
 let height = width / 1.6
@@ -150,22 +152,30 @@ projection_test = d3.geoMercator()
 	.scale([ width / 1.5 ])
   	.translate([ width / 2, height / 2 ])	
 	
-d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv").then(data => {
-       svg.selectAll("circle")
-    	.data(data)
-    	.enter()
-    	.append("circle")
-      	.attr("cx", function(d) {
-		return usaProjection([d.lon, d.lat])[0];
-	})
+d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv", function(data) {
+  svg.selectAll("circle")
+        	.data(data)
+        	.enter()
+        	.append("circle")
+        	.attr("cx", function(d) {
+        		return projection([d.lon, d.lat])[0];
+        	})
+        	.attr("cy", function(d) {
+        		return projection([d.lon, d.lat])[1];
+        	})
+        	.attr("r", 2)
+        		.style("fill",
+            var value = d.label;
 
-      	.attr("cy", function(d) {
-		return usaProjection([d.lon, d.lat])[1];
-	})
+            if (value) {
+	             //If value exists…
+	              return color(value);
+	             } else {
+	                //If value is undefined…
+	                 return "rgb(213,222,217)"
 
-    	.attr("r", 2)
-      	.style("fill", "rgb(217,91,67)")
-	.style("opacity", 0.85);
+          )
+        		.style("opacity", 0.85)
 });
 
 
