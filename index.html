@@ -86,6 +86,8 @@ if (usa) {
   geoJsonUrl = "https://gist.githubusercontent.com/spiker830/3eab0cb407031bf9f2286f98b9d0558a/raw/7edae936285e77be675366550e20f9166bed0ed5/europe_features.json"
 }
 
+usaMap = d3.geoPath().projection(usaProjection)	
+	
 var padding = 40
 margin = ({top: 20, right: 30, bottom: 30, left: 40})
 
@@ -95,7 +97,7 @@ function renderMap(data) {
     .data(data.features)
     .enter()
     .append('path')
-    .attr('d', pathGenerator)
+    .attr('d', usaMap)
     .style("stroke", "#B2BEB5")
 	  .style("stroke-width", "1.5")
     .attr("fill", "white");
@@ -143,17 +145,17 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
     	.data(data)
     	.enter()
     	.append("circle")
-      .attr("cx", function(d) {
-		return pathGenerator([d.lon, d.lat])[0];
+      	.attr("cx", function(d) {
+		return usaMap([d.lon, d.lat])[0];
 	})
 
-      .attr("cy", function(d) {
-		return pathGenerator([d.lon, d.lat])[1];
+      	.attr("cy", function(d) {
+		return usaMap([d.lon, d.lat])[1];
 	})
 
     	.attr("r", 2)
-      .style("fill", "rgb(217,91,67)")
-	    .style("opacity", 0.85);
+      	.style("fill", "rgb(217,91,67)")
+	.style("opacity", 0.85);
 });
 
 
