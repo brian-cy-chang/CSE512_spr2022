@@ -112,7 +112,7 @@ function renderCity(data) {
 };
 
 // Request the GeoJSON
-d3.json(geoJsonUrl).then(geojson => {
+d3.json("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/northamerica.json").then(geojson => {
   // Tell D3 to render a path for each GeoJSON feature
   svg.selectAll("path")
     .data(geojson.features)
