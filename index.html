@@ -135,7 +135,7 @@ d3.json(geoJsonUrl).then(geojson => {
 	  .style("stroke-width", "1.5")
     .attr("fill", "white")// Color uses to fill in the lines
 	
-select("svg")
+d3.select("svg")
 	.append("text")
 	.attr("x", (width/2))
       	.attr("y", (margin.top*3.5))
