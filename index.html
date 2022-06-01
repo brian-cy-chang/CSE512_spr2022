@@ -125,10 +125,6 @@ d3.select("svg")
         .text("Sentiment in the United States");
 	
 d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv", function(data) {
-	console.log(data)
-});
-
-d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv", function(data) {
   svg.selectAll("circle")
     .data(data)
     .enter()
@@ -156,7 +152,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
         }
       }
         )
-      .style("opacity", 0.85)
+      .style("opacity", 0.50)
 });
 
 
