@@ -217,6 +217,7 @@ var legend = d3.select("body").append("svg")
    			.data(color.domain().slice().reverse())
    			.enter()
    			.append("g")
+			.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
      			.attr("translate", [width/4, height/2]);
 
   	legend.append("rect")
