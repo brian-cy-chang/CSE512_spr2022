@@ -134,7 +134,7 @@ d3.select("svg")
       	.attr('fill', 'black')
         .text("Sentiment in the United States");
 
-d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv".then(data => {
+d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv").then(data => {
        svg.selectAll("circle")
     	.data(data)
     	.enter()
