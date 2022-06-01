@@ -134,10 +134,6 @@ d3.select("svg")
       	.attr('fill', 'black')
         .text("Sentiment in the United States");
 
-d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv", function(data){
-    console.log(data);
-});
-
 projection_test = d3.geoMercator()
 	.scale([ width / 1.5 ])
   	.translate([ width / 2, height / 2 ])	
