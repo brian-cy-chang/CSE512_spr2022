@@ -31,7 +31,8 @@ div.tooltip {
 	padding: 0.1vw;             
 	font: 0.8vmin sans-serif;        
 	background: white;   
-	border: 0px;      
+	border: 0px;
+	opacity: 0.8;
 	border-radius: 8px;           
 	pointer-events: none;         
 }
@@ -177,7 +178,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
 	.on("mouseover", function(d) {      
     	div.transition()        
       	   .duration(200)      
-           .style("opacity", .6);      
+           .style("opacity", .9);      
            div.text(d.text)
            .style("left", (d3.event.pageX) + "px")     
            .style("top", (d3.event.pageY - 28) + "px");    
