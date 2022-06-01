@@ -44,8 +44,8 @@ div.tooltip {
 	position:absolute;
 	width: 100%;
 	padding: 0;
-	top: 1vw;
-	left: 1vw;
+	top: 2vw;
+	left: 2vw;
 }
 </style>
 
@@ -218,8 +218,9 @@ var legend = d3.select("body").append("svg")
    			.append("g")
      			.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
-  	legend.append("circle")
-   		.attr("r", (width/400))
+  	legend.append("rect")
+   		.attr("width", (width/400))
+   		.attr("height", (height/400))
    		.style("fill", color);
 
   	legend.append("text")
