@@ -142,17 +142,17 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
 
         if (value == "POSITIVE") {
         //If value exists…
-        return color[0];
+        return "rgb(255,0,0)"
       } else if (value == "NEGATIVE"){
         //If value is undefined…
-        return color[1];
+        return "rgb(0,0,255)"
         }
         else {
-          return color[2]
+          return "rgb(211,211,211)"
         }
       }
         )
-      .style("opacity", 0.50)
+      .style("opacity", 0.85)
 });
 
 
