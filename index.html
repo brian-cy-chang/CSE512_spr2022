@@ -124,22 +124,35 @@ d3.select("svg")
       	.attr('fill', 'black')
         .text("Sentiment in the United States");
 
-d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv").then(data => {
-       svg.selectAll("circle")
-    	.data(data)
-    	.enter()
-    	.append("circle")
-      	.attr("cx", function(d) {
-		return usaProjection([d.lon, d.lat])[0];
-		})
+d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv", function(data) {
+  svg.selectAll("circle")
+    .data(data)
+    .enter()
+    .append("circle")
+    .attr("cx", function(d) {
+    	return usaProjection([d.lon, d.lat])[0];
+    })
+    .attr("cy", function(d) {
+                return usaProjection([d.lon, d.lat])[1];
+    })
+    .attr("r", 2)
+    .style("fill", function(d) {
+        var value = d.label;
+        // var color = d3.scaleLinear().domain(["POSITIVE","NEGATIVE","NEUTRAL"]).range(["rgb(255,0,0)","rgb(0,0,255)","rgb(211,211,211)"]);
 
-      	.attr("cy", function(d) {
-		return usaProjection([d.lon, d.lat])[1];
-		})
-
-    	.attr("r", 2)
-      	.style("fill", "rgb(217,91,67)")
-	.style("opacity", 0.50);
+        if (value == "POSITIVE") {
+        //If value exists…
+        return color[0];
+      } else if (value == "NEGATIVE"){
+        //If value is undefined…
+        return color[1];
+        }
+        else {
+          return color[2]
+        }
+      }
+        )
+      .style("opacity", 0.50)
 });
 
 
