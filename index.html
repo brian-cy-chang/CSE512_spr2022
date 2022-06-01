@@ -39,6 +39,7 @@ p {
     <p style="font-family:Sans-Serif; color:black">
       There has been growing political division between Democrats and Republicans, the two major political parties in the United States, the past decade. At a time in which Republicans are pushing to reverse Roe V. Wade, block gun control, and continue gerrymandering, it is paramount that Democrats and President Biden earn votes on the campaign trail leading into the 2022 mid-term elections and the 2024 presidential election. To gain insight into how Americans feel about current domestic and foreign issues, we performed sentiment analysis of Tweets about the 2022 State of the Union (SOTU).
     </p>
+    <br>
   </main>
 
   <!-- Uncomment if using d3: -->
@@ -57,12 +58,12 @@ var width = window.innerWidth;
 let height = width / 1.6
 
 let svg = d3.select("body").append("svg")
-    .attr("width", width/1.2)
-    .attr("height", height/1.2)
+    .attr("width", width/1.1)
+    .attr("height", height/1.1)
 
 // A projection tells D3 how to orient the GeoJSON features
 let usaProjection = d3.geoAlbers()
-  .scale(width / 1.6)
+  .scale(width / 1.5)
   .translate([width/2, height/2])
 let europeProjection = d3.geoMercator()
   .center([ 13, 52 ])
