@@ -139,7 +139,7 @@ d3.select("svg")
 
 d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv", function(csv) {
        svg.selectAll("circle")
-    	.data(data)
+    	.data(csv)
     	.enter()
     	.append("circle")
     	.attr("cx", d=>usaProjection([d.lon,d.lat])[0])
