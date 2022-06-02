@@ -96,7 +96,7 @@ var div = d3.select("body")
     		.style("opacity", 0);
 
 // A projection tells D3 how to orient the GeoJSON features
-let usaProjection = d3.geoAlbersUsa()
+let usaProjection = d3.geoAlbers()
   .scale(width / 1.5)
   .translate([width/2, height/2])
 let europeProjection = d3.geoMercator()
@@ -206,24 +206,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
 });
 	
 // add zoom interaction
-var mapZoom = d3.zoom()
-   .translate(usaProjection.translate())
-   .scale(usaProjection.scale())
-   .on("zoom", zoomed);
-	
-d3.select("svg").call(mapZoom);
-function zoomed() {
-    usaProjection.translate(mapZoom.translate()).scale(mapZoom.scale());
-    d3.selectAll("path.geojson").attr("d", pathGenerator);
-      d3.selectAll("path.states").attr("d", pathGenerator);
-    d3.selectAll("circle.csv")
-        .attr("cx", function(d) {return projection([d.x,d.y])[0]})
-        .attr("cy", function(d) {return projection([d.x,d.y])[1]});
-};
 
-var color = d3.scaleLinear().range(["rgb(0,0,255)","rgb(255,0,0)","rgb(211,211,211)","rgb(217,91,67)"]);
-
-var legendText = ["POSITIVE", "NEGATIVE", "NEUTRAL", "NADA"];	
 	
 // ADD LEGEND ON SVG
 // MANUAL LEGEND
