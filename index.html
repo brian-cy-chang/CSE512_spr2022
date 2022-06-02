@@ -168,22 +168,12 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
   // add interactive legend
   var allGroup = ["POSITIVE", "NEUTRAL", "NEGATIVE"]
 
-  // Reformat the data: we need an array of arrays of {x, y} tuples
-  var dataReady = allGroup.map( function(grpName) { // .map allows to do something for each element of the list
-    return {
-      name: grpName,
-      values: data.map(function(d) {
-        return {label: d.label, value: +d[grpName]};
-      })
-    };
-  });
-
   // A color scale: one color for each group
   var myColor = d3.scaleQuantize().range(["rgb(0,0,255)","rgb(255,0,0)","rgb(211,211,211)"])
     .domain(allGroup);
 
   svg.selectAll("circle")
-    .data(dataReady)
+    .data(data)
     .enter()
     .append("circle")
     .attr("cx", function(d) {
@@ -193,25 +183,23 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
                 return usaProjection([d.lon, d.lat])[1];
     })
     .attr("r", (width/450))
-	.style("opacity", 0.50)
     .style("fill", function(d) {
-        return myColor(d.label)
-      })
-  .on("mouseover", function(d) {      
-    	div.transition()        
-      	   .duration(200)      
-           .style("opacity", .9);
-          div.text(d.text)
-           .style("left", (d3.event.pageX) + "px")     
-           .style("top", (d3.event.pageY - 28) + "px");
-	})
-	// fade out tooltip on mouse out               
-    	.on("mouseout", function(d) {       
-        div.transition()        
-           .duration(500)      
-           .style("opacity", 0);   
-    });
+        var x = d.label;
+        // var color = d3.scaleLinear().domain(["POSITIVE","NEGATIVE","NEUTRAL"]).range(["rgb(255,0,0)","rgb(0,0,255)","rgb(211,211,211)"]);
 
+        if (x == "POSITIVE") {
+        //If value exists…
+        return "rgb(0,0,255)"
+      } else if (x == "NEGATIVE"){
+        //If value is undefined…
+        return "rgb(255,0,0)"
+        }
+        else {
+          return "rgb(69,69,69)"
+        }
+      }
+        )
+      .style("opacity", 0.50)
 });
 	
 // add zoom interaction
