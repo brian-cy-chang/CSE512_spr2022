@@ -159,6 +159,9 @@ d3.select("svg")
 	.attr("font-weight", 700)
         .text("Sentiments in North America");
 });
+
+// Parse Datetime
+var parseDate = d3.utcParse("%Y-%m-%d %H:%M:%S%Z")	
 	
 d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv").then(data => {
   svg.selectAll("circle")
