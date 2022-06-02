@@ -32,7 +32,8 @@ div.tooltip {
 	max-height: 10vw;
 	padding: 0.1vw;             
 	font: 0.9vmin sans-serif;        
-	background: black;   
+	background: black;
+	color: #FFFFFF;
 	border: 0px;
 	opacity: 0.8;
 	border-radius: 8px;           
@@ -194,8 +195,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
            .style("opacity", .9);      
            div.text(d.text)
            .style("left", (d3.event.pageX) + "px")     
-           .style("top", (d3.event.pageY - 28) + "px")
-	   .attr('fill', 'white');    
+           .style("top", (d3.event.pageY - 28) + "px");    
 	}) 
 	// fade out tooltip on mouse out               
     	.on("mouseout", function(d) {       
