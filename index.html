@@ -178,12 +178,10 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
     };
   });
 
-  console.log(dataReady)
-
   // A color scale: one color for each group
   var myColor = d3.scaleQuantize().range(["rgb(0,0,255)","rgb(255,0,0)","rgb(211,211,211)"])
     .domain(allGroup);
-	
+
   svg.selectAll("circle")
     .data(data)
     .enter()
@@ -194,25 +192,12 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
     .attr("cy", function(d) {
                 return usaProjection([d.lon, d.lat])[1];
     })
-    .attr("r", (width/450))
+    .attr("r", (width/400))
 	.style("opacity", 0.50)
     .style("fill", function(d) {
-        var x = d.label;
-        // var color = d3.scaleLinear().domain(["POSITIVE","NEGATIVE","NEUTRAL"]).range(["rgb(255,0,0)","rgb(0,0,255)","rgb(211,211,211)"]);
-
-        if (x == "POSITIVE") {
-        //If value exists…
-        return "rgb(0,0,255)"
-      } else if (x == "NEGATIVE"){
-        //If value is undefined…
-        return "rgb(255,0,0)"
-        }
-        else {
-          return "rgb(69,69,69)"
-        }
-      }
-        )
-	.on("mouseover", function(d) {      
+        return myColor(d.label)
+      })
+  .on("mouseover", function(d) {      
     	div.transition()        
       	   .duration(200)      
            .style("opacity", .9);
@@ -227,37 +212,6 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
            .style("opacity", 0);   
     });
 
-    // add interactive legend
-    const selmodel = SelectionModel(); // <-- Instantiate a selection model
-
-    svg.append('g')
-    	.attr('transform', `translate((width/11), (height/2)`)
-    	// Add legend content; call with both container element and selection model.
-    	.call(container => legend(container, selmodel));
-
-    const entries = container.selectAll('g')
-      .data(data)
-      .join('g')
-      .attr('transform', d => `translate((width/11), (height/2)`)
-      .on('click', (e, d) => selmodel.toggle(d.label))
-      .on('dblclick', () => selmodel.clear());
-
-    selmodel.on('change.chart', () => {
-      countries.attr('fill', d => selmodel.has(d.label) ? color(d.label) : '#ccc');
-    });
-	
-    var formatDate = d3.timeFormat("%Y-%m-%d %H:%M:%S")
-      	return formatDate(parseDate(d.created_at))
-
-    var time_scrubber = Scrubber(
-      // min to max years in 5 year increments
-      d3.range(d3.min(data, d => formatDate), d3.max(data, d => formatDate) + 1, 1),
-      {
-        autoplay: false, delay: 500, loop: false, // experiment with these settings!
-        format: day => 'day = ' + day + reset, // display the variable name and force cell to rerun on reset
-        initial: listData[0].year                 // initial year of listData elements
-      }
-    )
 });
 	
 // add zoom interaction
