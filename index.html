@@ -174,7 +174,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
   var allGroup = ["POSITIVE", "NEUTRAL", "NEGATIVE"]
 
   // A color scale: one color for each group
-  var myColor = d3.scaleQuantize().domain(["rgb(0,0,255)","rgb(255,0,0)","rgb(211,211,211)"]).range([0,3])
+  var myColor = d3.scaleQuantize().domain(allGroup).range(["rgb(0,0,255)","rgb(255,0,0)","rgb(211,211,211)"])
 
   svg.selectAll("circle")
     .data(data)
