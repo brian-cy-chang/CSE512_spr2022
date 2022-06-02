@@ -209,7 +209,6 @@ var color = d3.scaleLinear().range(["rgb(0,0,255)","rgb(255,0,0)","rgb(211,211,2
 var legendText = ["POSITIVE", "NEGATIVE", "NEUTRAL", "NADA"];	
 	
 // ADD LEGEND ON SVG
-// MANUAL LEGEND
 // Handmade legend
 svg.append("circle").attr("cx", (width/11)).attr("cy", (height/2)).attr("r", (width/400)).style("fill", "rgb(0,0,255)")
 svg.append("circle").attr("cx", (width/11)).attr("cy", (height/2) + margin.top).attr("r", (width/400)).style("fill", "rgb(255,0,0)")
