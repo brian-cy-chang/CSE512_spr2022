@@ -164,6 +164,76 @@ d3.select("svg")
 // Parse Datetime
 var parseDate = d3.utcParse("%Y-%m-%d %H:%M:%S%Z")
 
+// selection model function
+function SelectionModel(values) {
+  const dispatch = d3.dispatch('change');
+  const state = new Set(values);
+  
+  const api = {
+    on:     (type, fn) => (dispatch.on(type, fn), api),
+    clear:  () => (clear(), api),
+    has:    value => !state.size || state.has(value),
+    set:    value => (update(value, true), api),
+    toggle: value => (update(value, !state.has(value)), api)
+  };
+  
+  function clear() {
+    if (state.size) {
+      state.clear();
+      dispatch.call('change', api, api);
+    }
+  }
+  
+  function update(value, add) {
+    if (add && !state.has(value)) {
+      state.add(value);
+      dispatch.call('change', api, api);
+    } else if (!add && state.has(value)) {
+      state.delete(value);
+      dispatch.call('change', api, api);
+    }
+  }
+
+  return api;
+}
+	
+// colorLegend function
+function colorLegend(container) {
+  const titlePadding = 14;  // padding between title and entries
+  const entrySpacing = 16;  // spacing between legend entries
+  const entryRadius = 5;    // radius of legend entry marks
+  const labelOffset = 4;    // additional horizontal offset of text labels
+  const baselineOffset = 4; // text baseline offset, depends on radius and font size
+
+  const title = container.append('text')
+    .attr('x', 0)
+    .attr('y', 0)
+    .attr('fill', 'black')
+    .attr('font-family', 'Helvetica Neue, Arial')
+    .attr('font-weight', 'bold')
+    .attr('font-size', '12px')
+    .text('Region');
+
+  const entries = container.selectAll('g')
+    .data(regions)
+    .join('g')
+      .attr('transform', d => `translate(0, ${titlePadding + d.index * entrySpacing})`);
+
+  const symbols = entries.append('circle')
+    .attr('cx', entryRadius) // <-- offset symbol x-position by radius
+    .attr('r', entryRadius)
+    .attr('fill', d => color(d.index));
+
+  const labels = entries.append('text')
+    .attr('x', 2 * entryRadius + labelOffset) // <-- place labels to the left of symbols
+    .attr('y', baselineOffset) // <-- adjust label y-position for proper alignment
+    .attr('fill', 'black')
+    .attr('font-family', 'Helvetica Neue, Arial')
+    .attr('font-size', '11px')
+    .style('user-select', 'none') // <-- disallow selectable text
+    .text(d => d.label);
+}
+
 var tools = d3.select("svg").append("div").attr("class", "tooltip");
 tools.append("div").attr("class", "label");
 tools.append("div").attr("class", "lon");
