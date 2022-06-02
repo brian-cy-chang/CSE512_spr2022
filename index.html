@@ -189,7 +189,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
     })
     .attr("r", (width/450))
     .style("fill", function(d) {
-	  return myColor(d.data.label);
+	  return myColor(d.label);
   })
       .style("opacity", 0.50)
       .on("mouseover", function(d) {
