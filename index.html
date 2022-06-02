@@ -282,25 +282,6 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
            .duration(500)
            .style("opacity", 0);
     });
-
-  var legendSVG = d3.select('.legend').append('svg')
-     .attr('width', width/10)
-     .attr('height', height/10);
-	
-  var g = legendSVG.append('g')
-    .attr("class", "legend-key")
-    .attr("transform", "translate(" + 20 + "," + 20 + ")");
-	
-  g.selectAll('rect')
-    .data(quantize.range().map(function(d) {
-		return quantize.invertExtent(d);
-    }))
-    .enter()
-    .append("rect");
-
-  g.append("text")
-    .attr("class", "caption")
-    .attr("y", (height/10))
 	   
 });
 	
