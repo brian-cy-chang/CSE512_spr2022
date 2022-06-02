@@ -337,6 +337,10 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
     .attr('transform', `translate(${width - margin.right - 150}, 10)`)
     // Add legend content; call with both container element and selection model.
     .call(container => legend(container, selmodel)); // <-- invoke legend helper
+
+  selmodel.on('change.chart', () => {
+    data.attr('fill', d => selmodel.has(d.label) ? color(d.label) : '#ccc');
+  });
 	
 });
 	
@@ -353,17 +357,6 @@ var zoom = d3.zoom()
 });
 
 svg.call(zoom);
-	
-// ADD LEGEND ON SVG
-// MANUAL LEGEND
-// Handmade legend
-svg.append("circle").attr("cx", (width/11)).attr("cy", (height/2)).attr("r", (width/400)).style("fill", "rgb(0,0,255)")
-svg.append("circle").attr("cx", (width/11)).attr("cy", (height/2) + margin.top).attr("r", (width/400)).style("fill", "rgb(69,69,69)")
-svg.append("circle").attr("cx", (width/11)).attr("cy", (height/2) + margin.top*2).attr("r", (width/400)).style("fill", "rgb(255,0,0)")
-svg.append("text").attr("x", (width/11) + margin.top).attr("y", (height/2)).text("POSITIVE").style("font-size", "1.1vh").attr("alignment-baseline","middle").attr("font-weight", 600)
-svg.append("text").attr("x", (width/11) + margin.top).attr("y", (height/2) + margin.top).text("NEUTRAL").style("font-size", "1.1vh").attr("alignment-baseline","middle").attr("font-weight", 600)
-svg.append("text").attr("x", (width/11) + margin.top).attr("y", (height/2) + margin.top*2).text("NEGATIVE").style("font-size", "1.1vh").attr("alignment-baseline","middle").attr("font-weight", 600)
-
 </script>
 
 <div style="text-align: center;"><img src='https://github.com/biribirii/CSE512_spr2022/blob/main/transformer_sentiment_pie.jpg?raw=true' alt='piechart'></div>
