@@ -183,7 +183,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
     .domain(allGroup);
 
   svg.selectAll("circle")
-    .data(data)
+    .data(dataReady)
     .enter()
     .append("circle")
     .attr("cx", function(d) {
@@ -192,7 +192,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
     .attr("cy", function(d) {
                 return usaProjection([d.lon, d.lat])[1];
     })
-    .attr("r", (width/400))
+    .attr("r", (width/450))
 	.style("opacity", 0.50)
     .style("fill", function(d) {
         return myColor(d.label)
