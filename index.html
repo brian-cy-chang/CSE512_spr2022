@@ -328,6 +328,13 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
            .duration(500)
            .style("opacity", 0);
     });
+
+  var selmodel = SelectionModel();
+
+  svg.append('g')
+    .attr('transform', `translate(${width - margin.right - 150}, 10)`)
+    // Add legend content; call with both container element and selection model.
+    .call(container => legend(container, selmodel)); // <-- invoke legend helper
 	
 });
 	
