@@ -211,10 +211,10 @@ var legendText = ["POSITIVE", "NEGATIVE", "NEUTRAL", "NADA"];
 // ADD LEGEND ON SVG
 // MANUAL LEGEND
 // Handmade legend
-svg.append("circle").attr("cx", (width/11)).attr("cy", (height/11)).attr("r", (width/400)).style("fill", "rgb(0,0,255)")
-svg.append("circle").attr("cx", (width/11)).attr("cy", (height/11) + margin.top).attr("r", (width/400)).style("fill", "rgb(255,0,0)")
-svg.append("text").attr("x", (width/11) + margin.top).attr("y", (height/11)).text("POSITIVE").style("font-size", "1.1vh").attr("alignment-baseline","middle").attr("font-weight", 600)
-svg.append("text").attr("x", (width/11) + margin.top).attr("y", (height/11) + margin.top).text("NEGATIVE").style("font-size", "1.1vh").attr("alignment-baseline","middle").attr("font-weight", 600)
+svg.append("circle").attr("cx", (width/11)).attr("cy", (height/15)).attr("r", (width/400)).style("fill", "rgb(0,0,255)")
+svg.append("circle").attr("cx", (width/11)).attr("cy", (height/15) + margin.top).attr("r", (width/400)).style("fill", "rgb(255,0,0)")
+svg.append("text").attr("x", (width/11) + margin.top).attr("y", (height/15)).text("POSITIVE").style("font-size", "1.1vh").attr("alignment-baseline","middle").attr("font-weight", 600)
+svg.append("text").attr("x", (width/11) + margin.top).attr("y", (height/15) + margin.top).text("NEGATIVE").style("font-size", "1.1vh").attr("alignment-baseline","middle").attr("font-weight", 600)
 
 </script>
 
