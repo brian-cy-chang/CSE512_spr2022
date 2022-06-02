@@ -211,6 +211,14 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
            .duration(500)
            .style("opacity", 0);
     });
+
+  // add legend
+  var legend = svg.selectAll(".legend")
+  	.data(color.domain())
+  	.enter()
+  	.append("g")
+  	.attr("class", "legend")
+  	
 });
 	
 // add zoom interaction
