@@ -171,10 +171,16 @@ tools.append("div").attr("class", "lat");
 d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv").then(data => {
 
   // add interactive legend
-  var allGroup = ["POSITIVE", "NEUTRAL", "NEGATIVE"]
+  var allGroup = ["POSITIVE", "NEGATIVE", "NEUTRAL"]
 
   // A color scale: one color for each group
   var myColor = d3.scaleLinear().domain(["rgb(0,0,255)","rgb(255,0,0)","rgb(69,69,69)"]).range(allGroup)
+  
+  var color = new Map([
+  ["POSITIVE", 'rgb(0,0,255)'],
+  ["NEUTRAL", 'rgb(69,69,69)'],
+  ["NEGATIVE", 'rgb(255,0,0)']
+	]);
 
   svg.selectAll("circle")
     .data(data)
@@ -188,7 +194,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
     })
     .attr("r", (width/450))
     .style("fill", function(d) {
-	  return myColor(d.label);
+	  return color.get(d.label);
   })
       .style("opacity", 0.50)
       .on("mouseover", function(d) {
