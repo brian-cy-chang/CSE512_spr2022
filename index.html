@@ -202,7 +202,7 @@ function colorLegend(svg) {
     .attr('font-family', 'Helvetica Neue, Arial')
     .attr('font-weight', 'bold')
     .attr('font-size', '12px')
-    .text('Region');
+    .text('Sentiments');
 
   const entries = svg.selectAll('g')
     .data(data)
@@ -223,11 +223,6 @@ function colorLegend(svg) {
     .style('user-select', 'none') // <-- disallow selectable text
     .text(d => d.label);
 }
-	
-var tools = d3.select("svg").append("div").attr("class", "tooltip");
-tools.append("div").attr("class", "label");
-tools.append("div").attr("class", "lon");
-tools.append("div").attr("class", "lat");
 	
 d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv").then(data => {
 
@@ -281,12 +276,6 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
   });
 }
 
-  // add interactive legend
-  var allGroup = ["POSITIVE", "NEGATIVE", "NEUTRAL"]
-
-  // A color scale: one color for each group
-  var myColor = d3.scaleLinear().domain(["rgb(0,0,255)","rgb(255,0,0)","rgb(69,69,69)"]).range(allGroup)
-  
   var mapColor = new Map([
   ["POSITIVE", 'rgb(0,0,255)'],
   ["NEUTRAL", 'rgb(69,69,69)'],
