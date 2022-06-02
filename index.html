@@ -88,6 +88,7 @@ let height = width / 1.6
 let svg = d3.select("body").append("svg")
     .attr("width", width/1.1)
     .attr("height", height/1.1)
+    .append("g")
 
 // Append Div for tooltip to SVG
 var div = d3.select("body")
@@ -213,6 +214,9 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
     });
 
   // add legend
+  var legendRectSize = 25;
+  var legendSpacing = 6;
+	
   var legend = svg.selectAll(".legend")
   	.data(color.domain())
   	.enter()
