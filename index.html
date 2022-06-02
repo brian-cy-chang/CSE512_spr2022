@@ -206,6 +206,19 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
            .duration(500)      
            .style("opacity", 0);   
     });
+	
+	    var formatDate = d3.timeFormat("%Y-%m-%d %H:%M:%S")
+      		return formatDate(parseDate(d.created_at))
+
+    viewof year = Scrubber(
+      // min to max years in 5 year increments
+      d3.range(d3.min(data, d => formatDate), d3.max(data, d => formatDate) + 1, 1),
+      {
+        autoplay: false, delay: 500, loop: false, // experiment with these settings!
+        format: day => 'day = ' + day + reset, // display the variable name and force cell to rerun on reset
+        initial: listData[0].year                 // initial year of listData elements
+      }
+    )
 });
 	
 // add zoom interaction
