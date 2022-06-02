@@ -206,7 +206,14 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
 });
 	
 // add zoom interaction
+let zoom = d3.zoom()
+   .scaleExtent([1, 2])
+   .translateExtent([[-500, -300], [1500, 1000]])
+   .on('zoom', () => {
+       svg.attr('transform', d3.event.transform)
+   });
 
+container.call(zoom);
 	
 // ADD LEGEND ON SVG
 // MANUAL LEGEND
