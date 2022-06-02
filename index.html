@@ -332,7 +332,12 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
     });
 
   var selmodel = SelectionModel();
-
+  
+  var g = container.selectAll('g')
+    .data(data)
+    .enter() // <-- We use "enter" (not "join") so we can later append <rect> and <text> only for new data.
+      .append('g')
+	
   svg.append('g')
     .attr('transform', `translate(${width - margin.right - 150}, 10)`)
     // Add legend content; call with both container element and selection model.
