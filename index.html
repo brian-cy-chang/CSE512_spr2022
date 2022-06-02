@@ -161,7 +161,12 @@ d3.select("svg")
 });
 
 // Parse Datetime
-var parseDate = d3.utcParse("%Y-%m-%d %H:%M:%S%Z")	
+var parseDate = d3.utcParse("%Y-%m-%d %H:%M:%S%Z")
+
+var tools = d3.select("svg").append("div").attr("class", "tooltip");
+tools.append("div").attr("class", "label");
+tools.append("div").atrr("class", "lon");
+tools.append("div").atrr("class", "lat");
 	
 d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv").then(data => {
 
@@ -184,21 +189,8 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
     })
     .attr("r", (width/450))
     .style("fill", function(d) {
-        var x = d.label;
-        // var color = d3.scaleLinear().domain(["POSITIVE","NEGATIVE","NEUTRAL"]).range(["rgb(255,0,0)","rgb(0,0,255)","rgb(211,211,211)"]);
-
-        if (x == "POSITIVE") {
-        //If value exists…
-        return "rgb(0,0,255)"
-      } else if (x == "NEGATIVE"){
-        //If value is undefined…
-        return "rgb(255,0,0)"
-        }
-        else {
-          return "rgb(69,69,69)"
-        }
-      }
-        )
+	  return myColor(d.data.label);
+  })
       .style("opacity", 0.50)
       .on("mouseover", function(d) {
     	div.transition()
