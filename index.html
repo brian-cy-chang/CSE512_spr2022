@@ -298,7 +298,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
     .enter() // <-- We use "enter" (not "join") so we can later append <rect> and <text> only for new data.
       .append('g')
 
-  g.selectAll("circle")
+  svg.selectAll("circle")
     .data(data)
     .enter()
     .append("circle")
@@ -331,7 +331,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
   svg.append('g')
     .attr('transform', `translate(${width - margin.right - 150}, 10)`)
     // Add legend content; call with both container element and selection model.
-    .call(container => legend(container, selmodel)); // <-- invoke legend helper
+    .call(svg => legend(svg, selmodel)); // <-- invoke legend helper
 
   selmodel.on('change.chart', () => {
     data.attr('fill', d => selmodel.has(d.label) ? color(d.label) : '#ccc');
