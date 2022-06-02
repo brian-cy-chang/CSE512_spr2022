@@ -143,7 +143,7 @@ d3.json("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/northam
 	
 d3.json(geoJsonUrl).then(states => {
   // Tell D3 to render a path for each GeoJSON feature
-  base.selectAll("path")
+  svg.append("g").selectAll("path")
     .data(states.features)
     .enter()
     .append("path")
@@ -284,7 +284,8 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
   ["NEGATIVE", 'rgb(255,0,0)']
 	]);
 
-  base.selectAll("circle")
+  svg.append("g").attr("class", "coordinates")
+    .selectAll("g.circles")
     .data(data)
     .enter()
     .append("circle")
