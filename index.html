@@ -96,7 +96,7 @@ var div = d3.select("body")
     		.style("opacity", 0);
 
 // A projection tells D3 how to orient the GeoJSON features
-let usaProjection = d3.geoAlbers()
+let usaProjection = d3.geoAlbersUsa()
   .scale(width / 1.5)
   .translate([width/2, height/2])
 let europeProjection = d3.geoMercator()
