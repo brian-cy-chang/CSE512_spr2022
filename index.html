@@ -165,8 +165,8 @@ var parseDate = d3.utcParse("%Y-%m-%d %H:%M:%S%Z")
 
 var tools = d3.select("svg").append("div").attr("class", "tooltip");
 tools.append("div").attr("class", "label");
-tools.append("div").atrr("class", "lon");
-tools.append("div").atrr("class", "lat");
+tools.append("div").attr("class", "lon");
+tools.append("div").attr("class", "lat");
 	
 d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv").then(data => {
 
