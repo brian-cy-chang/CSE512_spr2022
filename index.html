@@ -81,10 +81,6 @@ div.tooltip {
 // var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 var width = window.innerWidth;
 	
-var color = d3.scaleLinear().range(["rgb(0,0,255)","rgb(255,0,0)","rgb(211,211,211)"])
-
-var legendText = ["POSITIVE", "NEGATIVE", "NEUTRAL"];
-
 // Setting up the svg element for D3 to draw in
 let height = width / 1.6
 
@@ -208,6 +204,10 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
     });
 });
 
+var color = d3.scaleLinear().range(["rgb(0,0,255)","rgb(255,0,0)","rgb(211,211,211)"]);
+
+var legendText = ["POSITIVE", "NEGATIVE", "NEUTRAL"];	
+	
 // ADD LEGEND ON SVG
 var legend = d3.select("body").append("svg")
       			.attr("class", "legend")
