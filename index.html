@@ -253,7 +253,7 @@ function legend(container, selmodel) {
   // The "on" method registers event listeners
   // We update the selection model in response
   const entries = container.selectAll('g')
-    .data(regions)
+    .data(data)
     .join('g')
       .attr('transform', d => `translate(0, ${titlePadding + d.index * entrySpacing})`)
       .on('click', (e, d) => selmodel.toggle(d.index)) // <-- respond to clicks
