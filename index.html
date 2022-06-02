@@ -206,7 +206,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
 });
 	
 // add zoom interaction
-var mapZoom = d3.behavior.zoom()
+var mapZoom = d3.zoom()
    .translate(usaProjection.translate())
    .scale(usaProjection.scale())
    .on("zoom", zoomed);
