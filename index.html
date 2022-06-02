@@ -97,7 +97,7 @@ var div = d3.select("body")
 
 // A projection tells D3 how to orient the GeoJSON features
 let usaProjection = d3.geoAlbers()
-  .scale(width / 1.5)
+  .scale(width / 1.2)
   .translate([width/2, height/2])
 let europeProjection = d3.geoMercator()
   .center([ 13, 52 ])
@@ -172,6 +172,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
                 return usaProjection([d.lon, d.lat])[1];
     })
     .attr("r", (width/400))
+	.style("opacity", 0.50)
     .style("fill", function(d) {
         var x = d.label;
         // var color = d3.scaleLinear().domain(["POSITIVE","NEGATIVE","NEUTRAL"]).range(["rgb(255,0,0)","rgb(0,0,255)","rgb(211,211,211)"]);
@@ -188,7 +189,6 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
         }
       }
         )
-      .style("opacity", 0.50)
 	.on("mouseover", function(d) {      
     	div.transition()        
       	   .duration(200)      
