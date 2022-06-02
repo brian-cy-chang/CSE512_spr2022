@@ -188,14 +188,14 @@ function SelectionModel(values) {
 }
 	
 // colorLegend function
-function colorLegend(container) {
+function colorLegend(svg) {
   const titlePadding = 14;  // padding between title and entries
   const entrySpacing = 16;  // spacing between legend entries
   const entryRadius = 5;    // radius of legend entry marks
   const labelOffset = 4;    // additional horizontal offset of text labels
   const baselineOffset = 4; // text baseline offset, depends on radius and font size
 
-  const title = container.append('text')
+  const title = svg.append('text')
     .attr('x', 0)
     .attr('y', 0)
     .attr('fill', 'black')
@@ -204,15 +204,15 @@ function colorLegend(container) {
     .attr('font-size', '12px')
     .text('Region');
 
-  const entries = container.selectAll('g')
-    .data(regions)
+  const entries = svg.selectAll('g')
+    .data(data)
     .join('g')
       .attr('transform', d => `translate(0, ${titlePadding + d.index * entrySpacing})`);
 
   const symbols = entries.append('circle')
     .attr('cx', entryRadius) // <-- offset symbol x-position by radius
     .attr('r', entryRadius)
-    .attr('fill', d => color(d.index));
+    .attr('fill', d => color(d.label));
 
   const labels = entries.append('text')
     .attr('x', 2 * entryRadius + labelOffset) // <-- place labels to the left of symbols
@@ -235,14 +235,14 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
   .domain(data.map(d => d.label))
   .range(["rgb(255,0,0)","rgb(69,69,69)","rgb(0,0,255)"]) // try other schemes, too!	
 	
-  function legend(container, selmodel) {
+  function legend(svg, selmodel) {
   const titlePadding = 14;
   const entrySpacing = 16;
   const entryRadius = 5;
   const labelOffset = 4;
   const baselineOffset = 4;
       
-  const title = container.append('text')
+  const title = svg.append('text')
     .attr('x', 0)
     .attr('y', 0)
     .attr('fill', 'black')
@@ -253,17 +253,17 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
       
   // The "on" method registers event listeners
   // We update the selection model in response
-  const entries = container.selectAll('g')
+  const entries = svg.selectAll('g')
     .data(data)
     .join('g')
     .attr('transform', d => `translate(0, ${titlePadding + d.index * entrySpacing})`)
-    .on('click', (e, d) => selmodel.toggle(d.index)) // <-- respond to clicks
+    .on('click', (e, d) => selmodel.toggle(d.label)) // <-- respond to clicks
     .on('dblclick', () => selmodel.clear());         // <-- respond to double clicks
       
   const symbols = entries.append('circle')
     .attr('cx', entryRadius)
     .attr('r', entryRadius)
-    .attr('fill', d => color(d.index));
+    .attr('fill', d => color(d.label));
       
   const labels = entries.append('text')
     .attr('x', 2 * entryRadius + labelOffset)
@@ -276,8 +276,8 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
 
   // Listen to selection model, update symbol and labels upon changes
   selmodel.on('change.legend', () => {
-    symbols.attr('fill', d => selmodel.has(d.index) ? color(d.index) : '#ccc');
-    labels.attr('fill', d => selmodel.has(d.index) ? 'black' : '#bbb');
+    symbols.attr('fill', d => selmodel.has(d.label) ? color(d.label) : '#ccc');
+    labels.attr('fill', d => selmodel.has(d.label) ? 'black' : '#bbb');
   });
 }
 
