@@ -315,7 +315,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
 
   var selmodel = SelectionModel();
 
-  svg.append('g')
+  svg
     .attr('transform', `translate(${width - margin.right - 150}, 10)`)
     // Add legend content; call with both container element and selection model.
     .call(svg => legend(svg, selmodel)); // <-- invoke legend helper
