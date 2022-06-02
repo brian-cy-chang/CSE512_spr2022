@@ -210,7 +210,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
 	    var formatDate = d3.timeFormat("%Y-%m-%d %H:%M:%S")
       		return formatDate(parseDate(d.created_at))
 
-    viewof year = Scrubber(
+    var time_scrubber = Scrubber(
       // min to max years in 5 year increments
       d3.range(d3.min(data, d => formatDate), d3.max(data, d => formatDate) + 1, 1),
       {
