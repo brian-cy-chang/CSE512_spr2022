@@ -68,6 +68,7 @@ div.tooltip {
       There has been growing political division between Democrats and Republicans, the two major political parties in the United States, the past decade. At a time in which Republicans are pushing to reverse Roe V. Wade, block gun control, and continue gerrymandering, it is paramount that Democrats and President Biden earn votes on the campaign trail leading into the 2022 mid-term elections and the 2024 presidential election. To gain insight into how Americans feel about current domestic and foreign issues, we performed sentiment analysis of Tweets about the 2022 State of the Union (SOTU).
     </p>
     <br>
+        <h2 style="font-family:Helvetica; color:black; text-align:center">Sentiments in North America</h2>
   </main>
 
   <!-- Uncomment if using d3: -->
@@ -148,17 +149,6 @@ d3.json(geoJsonUrl).then(states => {
     .style("stroke", "#B2BEB5")
 	  .style("stroke-width", "1.5")
     .attr("fill", "white")// Color uses to fill in the lines
-	
-d3.select("svg")
-	.append("text")
-	.attr("x", (width/2))
-      	.attr("y", (height/6))
-        .attr("text-anchor", "middle")
-        .attr("font-size", "2.2vh")
-	.attr("font-family", "Helvetica")
-      	.attr('fill', 'black')
-	.attr("font-weight", 700)
-        .text("Sentiments in North America");
 });
 
 // Parse Datetime
