@@ -193,12 +193,17 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
     	div.transition()        
       	   .duration(200)      
            .style("opacity", .9);
-	  div.text(d.label)
-	  .style("left", (d3.event.pageX) + "px")     
-           .style("top", (d3.event.pageY - 10) + "px");
           div.text(d.text)
            .style("left", (d3.event.pageX) + "px")     
            .style("top", (d3.event.pageY - 28) + "px");    
+	})
+	.on("mouseover", function(d) {      
+    	div.transition()        
+      	   .duration(200)      
+           .style("opacity", .9);
+          div.text(d.label)
+           .style("left", (d3.event.pageX) + "px")     
+           .style("top", (d3.event.pageY - 10) + "px");    
 	}) 
 	// fade out tooltip on mouse out               
     	.on("mouseout", function(d) {       
