@@ -234,13 +234,20 @@ function colorLegend(container) {
     .text(d => d.label);
 }
 	
-function legend(container, selmodel) {
+var tools = d3.select("svg").append("div").attr("class", "tooltip");
+tools.append("div").attr("class", "label");
+tools.append("div").attr("class", "lon");
+tools.append("div").attr("class", "lat");
+	
+d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv").then(data => {
+	
+  function legend(container, selmodel) {
   const titlePadding = 14;
   const entrySpacing = 16;
   const entryRadius = 5;
   const labelOffset = 4;
   const baselineOffset = 4;
-  
+      
   const title = container.append('text')
     .attr('x', 0)
     .attr('y', 0)
@@ -249,21 +256,21 @@ function legend(container, selmodel) {
     .attr('font-weight', 'bold')
     .attr('font-size', '12px')
     .text('Region');
-  
+      
   // The "on" method registers event listeners
   // We update the selection model in response
   const entries = container.selectAll('g')
     .data(data)
     .join('g')
-      .attr('transform', d => `translate(0, ${titlePadding + d.index * entrySpacing})`)
-      .on('click', (e, d) => selmodel.toggle(d.index)) // <-- respond to clicks
-      .on('dblclick', () => selmodel.clear());         // <-- respond to double clicks
-  
+    .attr('transform', d => `translate(0, ${titlePadding + d.index * entrySpacing})`)
+    .on('click', (e, d) => selmodel.toggle(d.index)) // <-- respond to clicks
+    .on('dblclick', () => selmodel.clear());         // <-- respond to double clicks
+      
   const symbols = entries.append('circle')
     .attr('cx', entryRadius)
     .attr('r', entryRadius)
     .attr('fill', d => color(d.index));
-  
+      
   const labels = entries.append('text')
     .attr('x', 2 * entryRadius + labelOffset)
     .attr('y', baselineOffset)
@@ -279,13 +286,6 @@ function legend(container, selmodel) {
     labels.attr('fill', d => selmodel.has(d.index) ? 'black' : '#bbb');
   });
 }
-
-var tools = d3.select("svg").append("div").attr("class", "tooltip");
-tools.append("div").attr("class", "label");
-tools.append("div").attr("class", "lon");
-tools.append("div").attr("class", "lat");
-	
-d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv").then(data => {
 
   // add interactive legend
   var allGroup = ["POSITIVE", "NEGATIVE", "NEUTRAL"]
