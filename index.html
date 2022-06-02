@@ -327,6 +327,8 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
     .data(data)
     .enter() // <-- We use "enter" (not "join") so we can later append <rect> and <text> only for new data.
       .append('g')
+  
+  console.log('g')
 	
   svg.append('g')
     .attr('transform', `translate(${width - margin.right - 150}, 10)`)
