@@ -206,9 +206,28 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
            .duration(500)      
            .style("opacity", 0);   
     });
+
+    // add interactive legend
+    const selmodel = SelectionModel(); // <-- Instantiate a selection model
+
+    svg.append('g')
+    	.attr('transform', `translate((width/11), (height/2)`)
+    	// Add legend content; call with both container element and selection model.
+    	.call(container => legend(container, selmodel));
+
+    const entries = container.selectAll('g')
+      .data(data)
+      .join('g')
+      .attr('transform', d => `translate((width/11), (height/2)`)
+      .on('click', (e, d) => selmodel.toggle(d.label))
+      .on('dblclick', () => selmodel.clear());
+
+    selmodel.on('change.chart', () => {
+      countries.attr('fill', d => selmodel.has(d.label) ? color(d.label) : '#ccc');
+    });
 	
-	    var formatDate = d3.timeFormat("%Y-%m-%d %H:%M:%S")
-      		return formatDate(parseDate(d.created_at))
+    var formatDate = d3.timeFormat("%Y-%m-%d %H:%M:%S")
+      	return formatDate(parseDate(d.created_at))
 
     var time_scrubber = Scrubber(
       // min to max years in 5 year increments
