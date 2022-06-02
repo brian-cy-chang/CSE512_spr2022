@@ -164,6 +164,26 @@ d3.select("svg")
 var parseDate = d3.utcParse("%Y-%m-%d %H:%M:%S%Z")	
 	
 d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv").then(data => {
+
+  // add interactive legend
+  var allGroup = ["POSITIVE", "NEUTRAL", "NEGATIVE"]
+
+  // Reformat the data: we need an array of arrays of {x, y} tuples
+  var dataReady = allGroup.map( function(grpName) { // .map allows to do something for each element of the list
+    return {
+      name: grpName,
+      values: data.map(function(d) {
+        return {label: d.label, value: +d[grpName]};
+      })
+    };
+  });
+
+  console.log(dataReady)
+
+  // A color scale: one color for each group
+  var myColor = d3.scaleQuantize().range(["rgb(0,0,255)","rgb(255,0,0)","rgb(211,211,211)"])
+    .domain(allGroup);
+	
   svg.selectAll("circle")
     .data(data)
     .enter()
