@@ -193,9 +193,12 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
     	div.transition()        
       	   .duration(200)      
            .style("opacity", .9);
-          div.text(function(d) {
-    	return d.label + d.text;
-    })
+	  div.text(d.label)
+	   .append("tspan")
+           .style("left", (d3.event.pageX) + "px")     
+           .style("top", (d3.event.pageY - 28) + "px");
+          div.text(d.text)
+	   .append("tspan")
            .style("left", (d3.event.pageX) + "px")     
            .style("top", (d3.event.pageY - 28) + "px");
 	})
