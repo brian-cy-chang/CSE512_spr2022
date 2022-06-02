@@ -97,7 +97,7 @@ var div = d3.select("body")
 
 // A projection tells D3 how to orient the GeoJSON features
 let usaProjection = d3.geoAlbers()
-  .scale(width / 1.2)
+  .scale(width / 2)
   .translate([width/2, height/2])
 let europeProjection = d3.geoMercator()
   .center([ 13, 52 ])
