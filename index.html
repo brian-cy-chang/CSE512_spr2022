@@ -314,8 +314,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
                 return usaProjection([d.lon, d.lat])[1];
     })
     .attr("r", (width/450))
-    .style("fill", function(d) {
-	  return color.get(d.label);
+    .style("fill", d => color(d.label);
   })
       .style("opacity", 0.50)
       .on("mouseover", function(d) {
