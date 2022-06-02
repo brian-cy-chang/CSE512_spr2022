@@ -240,6 +240,10 @@ tools.append("div").attr("class", "lon");
 tools.append("div").attr("class", "lat");
 	
 d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv").then(data => {
+
+  color = d3.scaleOrdinal()
+  .domain(data.map(d => d.label))
+  .range(["rgb(0,0,255)","rgb(255,0,0)","rgb(69,69,69)"]) // try other schemes, too!	
 	
   function legend(container, selmodel) {
   const titlePadding = 14;
@@ -311,7 +315,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
     })
     .attr("r", (width/450))
     .style("fill", function(d) {
-	  return color.get(d.label);
+	  return color(d.label);
   })
       .style("opacity", 0.50)
       .on("mouseover", function(d) {
