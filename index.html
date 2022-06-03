@@ -242,7 +242,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
   var dateTime = d3.extent(data, d => parseDate(d.created_at));
   var timeInitial = data.filter(d => parseDate(d.created_at) === dateTime[0])
   
-  console.log(dateTime);
+  console.log(timeInitial);
   
  // container is a d3 selection for the container group (<g>) element
 // selmodel is a selection model instance for tracking selected legend entries
