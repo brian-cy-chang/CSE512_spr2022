@@ -228,6 +228,9 @@ function colorLegend(container) {
 	
 d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv").then(data => {
 
+  .data(data)
+  .enter()
+
   var color = d3.scaleOrdinal()
   .domain(data.map(d => d.label))
   .range(["rgb(255,0,0)","rgb(69,69,69)","rgb(0,0,255)"]) // try other schemes, too!
