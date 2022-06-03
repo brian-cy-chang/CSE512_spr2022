@@ -47,7 +47,6 @@ div.tooltip {
 	padding: 0;
 	top: 2vw;
 	left: 2vw;
-	translate: (-2vw, 2vw)
 }
 </style>
 
@@ -209,7 +208,7 @@ function colorLegend(container) {
   const entries = container.selectAll('g')
     .data(data)
     .join('g')
-      .attr('transform', d => `translate(0, ${titlePadding + d.index * entrySpacing})`);
+      .attr('transform', d => `translate(0, ${titlePadding + d.label * entrySpacing})`);
 
   const symbols = entries.append('circle')
     .attr('cx', entryRadius) // <-- offset symbol x-position by radius
@@ -237,7 +236,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
 function legend(container, selmodel) {
   const titlePadding = 14;
   const entrySpacing = 16;
-  const entryRadius = 5;
+  const entryRadius = (width/400);
   const labelOffset = 4;
   const baselineOffset = 4;
   
@@ -248,12 +247,12 @@ function legend(container, selmodel) {
     .attr('font-family', 'Helvetica Neue, Arial')
     .attr('font-weight', 'bold')
     .attr('font-size', '12px')
-    .text('Region');
+    .text('Sentiments');
   
   // The "on" method registers event listeners
   // We update the selection model in response
   const entries = container.selectAll('g')
-    .data(regions)
+    .data(data)
     .join('g')
       .attr('transform', d => `translate(0, ${titlePadding + d.label * entrySpacing})`)
       .on('click', (e, d) => selmodel.toggle(d.label)) // <-- respond to clicks
