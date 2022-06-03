@@ -318,7 +318,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
   svg.append("g")
     .attr('transform', `translate(${width - margin.right - 150}, 10)`)
     // Add legend content; call with both container element and selection model.
-    .call(usaProjection => legend(usaProjection, selmodel)); // <-- invoke legend helper
+    .call(container => legend(usaProjection, selmodel)); // <-- invoke legend helper
 
   selmodel.on('change.chart', () => {
     data.attr('fill', d => selmodel.has(d.label) ? color(d.label) : '#ccc');
