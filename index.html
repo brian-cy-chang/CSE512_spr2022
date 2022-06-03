@@ -160,9 +160,6 @@ d3.json(geoJsonUrl).then(states => {
     .attr("fill", "white")// Color uses to fill in the lines
 });
 
-// dateTime parser
-var parseDate = d3.utcParse("%Y-%m-%dT%H:%M:%S%Z")
-
 // selection model function
 function SelectionModel(values) {
   const dispatch = d3.dispatch('change');
@@ -237,11 +234,14 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
 
   var color = d3.scaleOrdinal()
   .domain(data.map(d => d.label))
-  .range(["rgb(255,0,0)","rgb(69,69,69)","rgb(0,0,255)"])
+  .range(["rgb(255,0,0)","rgb(69,69,69)","rgb(0,0,255)"]);
   
-  var dateTime =d3.extent(data, d => parseDate.parse(d.created_at))
+  // dateTime parser
+  var parseDate = d3.time.format("%Y-%m-%dT%H:%M:%S%Z");
   
-  console.log(dateTime)
+  var dateTime = d3.extent(data, d => parseDate.parse(d.created_at));
+  
+  console.log(dateTime);
   
  // container is a d3 selection for the container group (<g>) element
 // selmodel is a selection model instance for tracking selected legend entries
