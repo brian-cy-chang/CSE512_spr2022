@@ -230,7 +230,11 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
 
   var color = d3.scaleOrdinal()
   .domain(data.map(d => d.label))
-  .range(["rgb(255,0,0)","rgb(69,69,69)","rgb(0,0,255)"]) // try other schemes, too!	
+  .range(["rgb(255,0,0)","rgb(69,69,69)","rgb(0,0,255)"]) // try other schemes, too!
+  
+  // parse dateTime
+  var timeStamp = parseDate(d.created_at)
+  console.log(timeStamp)
 	
   // container is a d3 selection for the container group (<g>) element
 // selmodel is a selection model instance for tracking selected legend entries
