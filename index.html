@@ -353,7 +353,7 @@ svg.call(zoom);
 
 <div id="container1" style="display:inline-block; vertical-align:top;" class="wrapper">
 	<img class="to_the_left" src='https://github.com/biribirii/CSE512_spr2022/blob/main/transformer_sentiment_pie.jpg?raw=true' alt='piechart'/>
-	<p class='paragraph'>We performed sentiment analysis of Tweets queried from the Twitter API if they had mention of #SOTU, #StateoftheUnion, or "Biden", between 2022-03-01 00:00:00 to 2022-03-07 11:59:00. Queried tweets could not be retweets, must have a corresponding geotag, and must be in English. Sentiment analysis was performed with an out of the box transformer model (Hugging Face). The default sentiment analysis pretrained model was used. Text input to the model were not further cleaned. Each corresponding sentiment label ("POSITIVE" or "NEGATIVE") has a corresponding score. For both labels, scores < 0.90 were re-labeled as "NEUTRAL".</p> 
+	<p class='paragraph'>We performed sentiment analysis of Tweets queried from the Twitter API if they had mention of #SOTU, #StateoftheUnion, or "Biden", between 2022-03-01 00:00:00 to 2022-03-07 11:59:00. Queried tweets could not be retweets, must have a corresponding geotag, and must be in English. Sentiment analysis was performed with an out-of-the-box transformer model (Hugging Face). The default sentiment analysis pretrained model was used. Text input to the model were not further cleaned. Each corresponding sentiment label ("POSITIVE" or "NEGATIVE") has a corresponding score. For both labels, scores < 0.90 were re-labeled as "NEUTRAL". The model classified majority of Tweets as "NEGATIVE".</p> 
 	<div class="clear"></div>
 </div>
 	
