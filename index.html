@@ -332,9 +332,10 @@
       var selmodel = SelectionModel();
 
       svg.append("g")
-        .attr('transform', "translate((width/4), (height/2)")
+        .attr('transform', "translate((width/4), (width/2)")
         // Add legend content; call with both container element and selection model.
-        .call(container => legend(container, selmodel)); // <-- invoke legend helper
+        .call(container => legend(container, selmodel)) // <-- invoke legend helper
+	.append("g")
 
       selmodel.on('change.chart', () => {
         pointCircles.attr('fill', d => selmodel.has(d.label) ? color(d.label) : '#ccc');
