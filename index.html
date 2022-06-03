@@ -237,9 +237,10 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
   .range(["rgb(255,0,0)","rgb(69,69,69)","rgb(0,0,255)"]);
   
   // dateTime parser
-  var parseDate = d3.utcParse("%Y-%m-%dT%H:%M:%S%Z");
+  var parseDate = d3.utcParse("%Y-%m-%dT%l:%M:%S%z");
   
   var dateTime = d3.extent(data, d => parseDate(d.created_at));
+  var timeInitial = data.filter(d => parseDate(d.created_at) === dateTime[0])
   
   console.log(dateTime);
   
