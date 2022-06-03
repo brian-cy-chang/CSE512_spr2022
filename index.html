@@ -1,66 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Uncomment if you want your page to NOT be indexed by search engines: -->
   <!-- <meta name="robots" content="none"> -->
-<style>
-  img {
-    width: 50%;
-    max-width: 50%;
-    height: auto;
-    float: left;
-    vertical-align:middle;
-}
+  <style>
+    img {
+      width: 50%;
+      max-width: 50%;
+      height: auto;
+      float: left;
+      vertical-align:middle;
+    }
 
-  h1 {
-  font-size: 3.0vmax;
-  }
-h2 {
-  font-size: 2.1vmax;
-  }
-p {
-  font-size: 1.8vmin;
-  font: sans-serif;
-  }
-span {
-  font-size: 1.8vmin;
-  font: sans-serif;
-  }
-	
-/* Style for Custom Tooltip */
-div.tooltip {   
- 	position: absolute;           
-	text-align: center;           
-	width: max-content;
-	max-width: 20vmax; /* (as much as you want) */
-	height: max-content;   
-	max-height: 20vmax;
-	padding: 0.1vw;             
-	font: 1.3vmax sans-serif;        
-	background: black;
-	color: #FFFFFF;
-	border: 0px;
-	opacity: 0.7;
-	border-radius: 8px;           
-	pointer-events: none;         
-}
-	
-/* Legend Position Style */
-.legend {
-	position: relative;
-	width: 100%;
-	padding: 0;
-	top: 2vw;
-	left: 2vw;
-	translate: (-2vw, 2vw)
-}
-</style>
+    h1 {
+      font-size: 3.0vmax;
+      }
+    h2 {
+      font-size: 2.1vmax;
+      }
+    p {
+      font-size: 1.8vmin;
+      font: sans-serif;
+      }
+      span {
+      font-size: 1.8vmin;
+      font: sans-serif;
+      }
+
+    /* Style for Custom Tooltip */
+    div.tooltip {
+      position: absolute;
+      text-align: center;
+      width: max-content;
+      max-width: 20vw;
+      /* (as much as you want) */
+      height: max-content;
+      max-height: 20vw;
+      padding: 0.1vw;
+      font: 1.5vw sans-serif;
+      background: black;
+      color: #FFFFFF;
+      border: 0px;
+      opacity: 0.7;
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    /* Legend Position Style */
+    .legend {
+      position: relative;
+      width: 100%;
+      padding: 0;
+      top: 2vw;
+      left: 2vw;
+      translate: (-2vw, 2vw)
+    }
+  </style>
 
   <link rel="stylesheet" href="style.css" />
-  <title style="font-family:Sans-Serif; color:black;">A Sentiment Analysis of Tweets about the 2022 State of the Union</title>
+  <title style="font-family:Sans-Serif; color:black;">A Sentiment Analysis of Tweets about the 2022 State of the Union
+  </title>
 </head>
 
 <body>
@@ -71,305 +74,297 @@ div.tooltip {
       <strong>Authors</strong>: Brian Chang & Richard Green
     </p>
     <br>
-	<h2 style="font-family:Helvetica; color:black">A Nation Divided?</h2>
+    <h2 style="font-family:Helvetica; color:black">A Nation Divided?</h2>
     <p style="font-family:Sans-Serif; color:black">
-      There has been growing political division between Democrats and Republicans, the two major political parties in the United States, the past decade. At a time in which Republicans are pushing to reverse Roe V. Wade, block gun control, and continue gerrymandering, it is paramount that Democrats and President Biden earn votes on the campaign trail leading into the 2022 mid-term elections and the 2024 presidential election. To gain insight into how Americans feel about current domestic and foreign issues, we performed sentiment analysis of Tweets about the 2022 State of the Union (SOTU).
+      There has been growing political division between Democrats and Republicans, the two major political parties in
+      the United States, the past decade. At a time in which Republicans are pushing to reverse Roe V. Wade, block gun
+      control, and continue gerrymandering, it is paramount that Democrats and President Biden earn votes on the
+      campaign trail leading into the 2022 mid-term elections and the 2024 presidential election. To gain insight into
+      how Americans feel about current domestic and foreign issues, we performed sentiment analysis of Tweets about the
+      2022 State of the Union (SOTU).
     </p>
     <br>
-        <h2 style="font-family:Helvetica; color:black; text-align:center">Sentiments in North America</h2>
+    <h2 style="font-family:Helvetica; color:black; text-align:center">Sentiments in North America</h2>
   </main>
 
   <!-- Uncomment if using d3: -->
 
-<script src="https://d3js.org/d3.v5.min.js"></script>
-<!-- style type="text/css">
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+
+  <!-- style type="text/css">
 </style-->
 
-<script type="text/javascript">
-	
-// var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-var width = window.innerWidth;
-	
-// Setting up the svg element for D3 to draw in
-let height = width / 1.6
+  <script type="text/javascript">
 
-let svg = d3.select("body").append("svg")
-    .attr("width", width/1.1)
-    .attr("height", height/1.1)
-    .append("g")
+    // var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    var width = window.innerWidth;
 
-// Append Div for tooltip to SVG
-var div = d3.select("body")
-		.append("div")   
-    		.attr("class", "tooltip")               
-    		.style("opacity", 0);
+    // Setting up the svg element for D3 to draw in
+    let height = width / 1.6
 
-// A projection tells D3 how to orient the GeoJSON features
-let usaProjection = d3.geoAlbers()
-  .scale(width / 2)
-  .translate([width/2, height/2])
-let europeProjection = d3.geoMercator()
-  .center([ 13, 52 ])
-  .scale([ width / 1.5 ])
-  .translate([ width / 2, height / 2 ])
+    let svg = d3.select("body").append("svg")
+      .attr("width", width / 1.1)
+      .attr("height", height / 1.1)
+      .append("g")
 
-// The path generator uses the projection to convert the GeoJSON
-// geometry to a set of coordinates that D3 can understand
-let pathGenerator = null
+    // Append Div for tooltip to SVG
+    var div = d3.select("body")
+      .append("div")
+      .attr("class", "tooltip")
+      .style("opacity", 0);
 
-// URL to the GeoJSON itself
-let geoJsonUrl = ''
+    // A projection tells D3 how to orient the GeoJSON features
+    let usaProjection = d3.geoAlbers()
+      .scale(width / 2)
+      .translate([width / 2, height / 2])
+    let europeProjection = d3.geoMercator()
+      .center([13, 52])
+      .scale([width / 1.5])
+      .translate([width / 2, height / 2])
 
-let usa = true // Change to false to render Europe instead
+    // The path generator uses the projection to convert the GeoJSON
+    // geometry to a set of coordinates that D3 can understand
+    let pathGenerator = null
 
-if (usa) {
-  pathGenerator = d3.geoPath().projection(usaProjection)
-  geoJsonUrl = "https://gist.githubusercontent.com/spiker830/e0d1b7950ced31369c903bed0cead7b1/raw/702c72e0ca5a1be95f84a50a58cfa6d4d6400f3f/us_features.json"
-} else {
-  pathGenerator = d3.geoPath().projection(europeProjection)
-  geoJsonUrl = "https://gist.githubusercontent.com/spiker830/3eab0cb407031bf9f2286f98b9d0558a/raw/7edae936285e77be675366550e20f9166bed0ed5/europe_features.json"
-}
-	
-var padding = 40
-var margin = ({top: 20, right: 30, bottom: 30, left: 40})
+    // URL to the GeoJSON itself
+    let geoJsonUrl = ''
 
-// Request the GeoJSON
-d3.json("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/northamerica.json").then(geojson => {
+    let usa = true // Change to false to render Europe instead
 
-   var base = svg.append("g").attr("class", "basemap");	
-  // Tell D3 to render a path for each GeoJSON feature
-  base.selectAll("path")
-    .data(geojson.features)
-    .enter()
-    .append("path")
-    .attr("d", pathGenerator) // This is where the magic happens
-    .style("stroke", "#B2BEB5")
-	  .style("stroke-width", "1.5")
-    .attr("fill", "white") // Color uses to fill in the lines
-});	
-	
-d3.json(geoJsonUrl).then(states => {
-  // Tell D3 to render a path for each GeoJSON feature
-  svg.append("g").selectAll("path")
-    .data(states.features)
-    .enter()
-    .append("path")
-    .attr("d", pathGenerator) // This is where the magic happens
-    .style("stroke", "#B2BEB5")
-	  .style("stroke-width", "1.5")
-    .attr("fill", "white")// Color uses to fill in the lines
-});
-
-// selection model function
-function SelectionModel(values) {
-  const dispatch = d3.dispatch('change');
-  const state = new Set(values);
-  
-  const api = {
-    on:     (type, fn) => (dispatch.on(type, fn), api),
-    clear:  () => (clear(), api),
-    has:    value => !state.size || state.has(value),
-    set:    value => (update(value, true), api),
-    toggle: value => (update(value, !state.has(value)), api)
-  };
-  
-  function clear() {
-    if (state.size) {
-      state.clear();
-      dispatch.call('change', api, api);
+    if (usa) {
+      pathGenerator = d3.geoPath().projection(usaProjection)
+      geoJsonUrl = "https://gist.githubusercontent.com/spiker830/e0d1b7950ced31369c903bed0cead7b1/raw/702c72e0ca5a1be95f84a50a58cfa6d4d6400f3f/us_features.json"
+    } else {
+      pathGenerator = d3.geoPath().projection(europeProjection)
+      geoJsonUrl = "https://gist.githubusercontent.com/spiker830/3eab0cb407031bf9f2286f98b9d0558a/raw/7edae936285e77be675366550e20f9166bed0ed5/europe_features.json"
     }
-  }
-  
-  function update(value, add) {
-    if (add && !state.has(value)) {
-      state.add(value);
-      dispatch.call('change', api, api);
-    } else if (!add && state.has(value)) {
-      state.delete(value);
-      dispatch.call('change', api, api);
+
+    var padding = 40
+    margin = ({ top: 20, right: 30, bottom: 30, left: 40 })
+
+    // Request the GeoJSON
+    d3.json("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/northamerica.json").then(geojson => {
+
+      var base = svg.append("g").attr("class", "basemap");
+      // Tell D3 to render a path for each GeoJSON feature
+      base.selectAll("path")
+        .data(geojson.features)
+        .enter()
+        .append("path")
+        .attr("d", pathGenerator) // This is where the magic happens
+        .style("stroke", "#B2BEB5")
+        .style("stroke-width", "1.5")
+        .attr("fill", "white") // Color uses to fill in the lines
+    });
+
+    d3.json(geoJsonUrl).then(states => {
+      // Tell D3 to render a path for each GeoJSON feature
+      svg.append("g").selectAll("path")
+        .data(states.features)
+        .enter()
+        .append("path")
+        .attr("d", pathGenerator) // This is where the magic happens
+        .style("stroke", "#B2BEB5")
+        .style("stroke-width", "1.5")
+        .attr("fill", "white")// Color uses to fill in the lines
+    });
+
+    // Parse Datetime
+    var parseDate = d3.utcParse("%Y-%m-%d %H:%M:%S%Z")
+
+    // selection model function
+    function SelectionModel(values) {
+      const dispatch = d3.dispatch('change');
+      const state = new Set(values);
+
+      const api = {
+        on: (type, fn) => (dispatch.on(type, fn), api),
+        clear: () => (clear(), api),
+        has: value => !state.size || state.has(value),
+        set: value => (update(value, true), api),
+        toggle: value => (update(value, !state.has(value)), api)
+      };
+
+      function clear() {
+        if (state.size) {
+          state.clear();
+          dispatch.call('change', api, api);
+        }
+      }
+
+      function update(value, add) {
+        if (add && !state.has(value)) {
+          state.add(value);
+          dispatch.call('change', api, api);
+        } else if (!add && state.has(value)) {
+          state.delete(value);
+          dispatch.call('change', api, api);
+        }
+      }
+
+      return api;
     }
-  }
 
-  return api;
-}
-	
-// colorLegend function
-function colorLegend(container) {
-  const titlePadding = 14;  // padding between title and entries
-  const entrySpacing = 16;  // spacing between legend entries
-  const entryRadius = (width/400);    // radius of legend entry marks
-  const labelOffset = 4;    // additional horizontal offset of text labels
-  const baselineOffset = 4; // text baseline offset, depends on radius and font size
+    // colorLegend function
+    function colorLegend(container) {
+      const titlePadding = 14;  // padding between title and entries
+      const entrySpacing = 16;  // spacing between legend entries
+      const entryRadius = 5;    // radius of legend entry marks
+      const labelOffset = 4;    // additional horizontal offset of text labels
+      const baselineOffset = 4; // text baseline offset, depends on radius and font size
 
-  const title = container.append('text')
-    .attr('x', 0)
-    .attr('y', 0)
-    .attr('fill', 'black')
-    .attr('font-family', 'Helvetica Neue, Arial')
-    .attr('font-weight', 'bold')
-    .attr('font-size', '12px')
-    .text('Sentiments');
+      const title = container.append('text')
+        .attr('x', 0)
+        .attr('y', 0)
+        .attr('fill', 'black')
+        .attr('font-family', 'Helvetica Neue, Arial')
+        .attr('font-weight', 'bold')
+        .attr('font-size', '12px')
+        .text('Sentiments');
 
-  const entries = container.selectAll('g')
-    .data(data)
-    .join('g')
-      .attr('transform', d => `translate(0, ${titlePadding + d.index * entrySpacing})`);
+      const entries = container.selectAll('g')
+        .data(data)
+        .join('g')
+        .attr('transform', d => `translate(0, ${titlePadding + d.index * entrySpacing})`);
 
-  const symbols = entries.append('circle')
-    .attr('cx', entryRadius) // <-- offset symbol x-position by radius
-    .attr('r', entryRadius)
-    .attr('fill', d => color(d.label));
+      const symbols = entries.append('circle')
+        .attr('cx', entryRadius) // <-- offset symbol x-position by radius
+        .attr('r', entryRadius)
+        .attr('fill', d => color(d.label));
 
-  const labels = entries.append('text')
-    .attr('x', 2 * entryRadius + labelOffset) // <-- place labels to the left of symbols
-    .attr('y', baselineOffset) // <-- adjust label y-position for proper alignment
-    .attr('fill', 'black')
-    .attr('font-family', 'Helvetica Neue, Arial')
-    .attr('font-size', '11px')
-    .style('user-select', 'none') // <-- disallow selectable text
-    .text(d => d.label);
-}
-	
-d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv").then(data => {
+      const labels = entries.append('text')
+        .attr('x', 2 * entryRadius + labelOffset) // <-- place labels to the left of symbols
+        .attr('y', baselineOffset) // <-- adjust label y-position for proper alignment
+        .attr('fill', 'black')
+        .attr('font-family', 'Helvetica Neue, Arial')
+        .attr('font-size', '11px')
+        .style('user-select', 'none') // <-- disallow selectable text
+        .text(d => d.label);
+    }
 
-  var color = d3.scaleOrdinal()
-  .domain(data.map(d => d.label))
-  .range(["rgb(255,0,0)","rgb(69,69,69)","rgb(0,0,255)"]);
-  
-  // dateTime parser
-  var formatDate = d3.timeFormat("%Y-%m-%dT%H");	
-  var parseDate = d3.utcParse("%Y-%m-%dT%H:%M:%S%Z");
-  
-  var dateTime = d3.extent(data, d => formatDate(parseDate(d.created_at)));
-  var timeInitial = data.filter(d => formatDate(parseDate(d.created_at) === dateTime[0]));
-    
- // container is a d3 selection for the container group (<g>) element
-// selmodel is a selection model instance for tracking selected legend entries
-function legend(container, selmodel) {
-  const titlePadding = 14;
-  const entrySpacing = 16;
-  const entryRadius = (width/400);
-  const labelOffset = 4;
-  const baselineOffset = 4;
-  
-  const title = container.append('text')
-    .attr('x', 0)
-    .attr('y', 0)
-    .attr('fill', 'black')
-    .attr('font-family', 'Helvetica Neue, Arial')
-    .attr('font-weight', 'bold')
-    .attr('font-size', '12px')
-    .text('Sentiments');
-  
-  // The "on" method registers event listeners
-  // We update the selection model in response
-  const entries = container.selectAll('g')
-    .data(data)
-    .data(["NEGATIVE", "NEUTRAL", "POSITIVE"].map((d, index) => ({
+    d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.csv").then(data => {
+
+      var color = d3.scaleOrdinal()
+        .domain(data.map(d => d.label))
+        .range(["rgb(255,0,0)", "rgb(69,69,69)", "rgb(0,0,255)"]) // try other schemes, too!
+
+      function legend(container, selmodel) {
+        const titlePadding = 14;
+        const entrySpacing = 16;
+        const entryRadius = 5;
+        const labelOffset = 4;
+        const baselineOffset = 4;
+
+        const title = container.append('text')
+          .attr('x', 0)
+          .attr('y', 0)
+          .attr('fill', 'black')
+          .attr('font-family', 'Helvetica Neue, Arial')
+          .attr('font-weight', 'bold')
+          .attr('font-size', '12px')
+          .text('Region');
+
+        // The "on" method registers event listeners
+        // We update the selection model in response
+        const entries = container.selectAll('g')
+          .data(["NEGATIVE", "NEUTRAL", "POSITIVE"].map((d, index) => ({
             label: d, // converts the array of label strings into an array of objects
             index: index,
           })))
-    .join('g')
-      .attr('transform', d => `translate(0, ${titlePadding + d.label * entrySpacing})`)
-      .on('click', (d) => selmodel.toggle(d.label)) // <-- respond to clicks
-      .on('dblclick', () => selmodel.clear());         // <-- respond to double clicks
-  
-  const symbols = entries.append('circle')
-    .attr('cx', entryRadius)
-    .attr('r', entryRadius)
-    .attr('fill', d => color(d.label));
-  
-  const labels = entries.append('text')
-    .attr('x', 2 * entryRadius + labelOffset)
-    .attr('y', baselineOffset)
-    .attr('fill', 'black')
-    .attr('font-family', 'Helvetica Neue, Arial')
-    .attr('font-size', '11px')
-    .style('user-select', 'none')
-    .text(d => d.label);
+          .join('g')
+          .attr('transform', d => `translate(0, ${titlePadding + d.index * entrySpacing})`)
+          .on('click', (d) => selmodel.toggle(d.label)) // <-- respond to clicks
+          .on('dblclick', () => selmodel.clear());         // <-- respond to double clicks
 
-  // Listen to selection model, update symbol and labels upon changes
-  selmodel.on('change.legend', () => {
-    symbols.attr('fill', d => selmodel.has(d.label) ? color(d.label) : '#ccc');
-    labels.attr('fill', d => selmodel.has(d.label) ? 'black' : '#bbb');
-  });
-}
+        const symbols = entries.append('circle')
+          .attr('cx', entryRadius)
+          .attr('r', entryRadius)
+          .attr('fill', d => color(d.label));
 
-  var mapColor = new Map([
-  ["POSITIVE", 'rgb(0,0,255)'],
-  ["NEUTRAL", 'rgb(69,69,69)'],
-  ["NEGATIVE", 'rgb(255,0,0)']
-	]);
+        const labels = entries.append('text')
+          .attr('x', 2 * entryRadius + labelOffset)
+          .attr('y', baselineOffset)
+          .attr('fill', 'black')
+          .attr('font-family', 'Helvetica Neue, Arial')
+          .attr('font-size', '11px')
+          .style('user-select', 'none')
+          .text(d => d.label);
 
-  const pointCircles = svg.append("g").attr("class", "coordinates")
-    .selectAll("circle")
-    .data(data)
-    .enter()
-    .append("circle")
-    .attr("cx", function(d) {
-    	return usaProjection([d.lon, d.lat])[0];
-    })
-    .attr("cy", function(d) {
-                return usaProjection([d.lon, d.lat])[1];
-    })
-    .attr("r", (width/450))
-    .attr("fill", d => color(d.label))
-      .style("opacity", 0.50)
-      .on("mouseover", function(d) {
-    	div.transition()
-      	   .duration(200)
-           .style("opacity", .9);
+        // Listen to selection model, update symbol and labels upon changes
+        selmodel.on('change.legend', () => {
+          symbols.attr('fill', d => selmodel.has(d.label) ? color(d.label) : '#ccc');
+          labels.attr('fill', d => selmodel.has(d.label) ? 'black' : '#bbb');
+        });
+      }
+
+      var mapColor = new Map([
+        ["POSITIVE", 'rgb(0,0,255)'],
+        ["NEUTRAL", 'rgb(69,69,69)'],
+        ["NEGATIVE", 'rgb(255,0,0)']
+      ]);
+
+      const pointCircles = svg.append("g").attr("class", "coordinates")
+        .selectAll("circle")
+        .data(data)
+        .enter()
+        .append("circle")
+        .attr("cx", function (d) {
+          return usaProjection([d.lon, d.lat])[0];
+        })
+        .attr("cy", function (d) {
+          return usaProjection([d.lon, d.lat])[1];
+        })
+        .attr("r", (width / 450))
+        .attr("fill", d => color(d.label))
+        .style("opacity", 0.50)
+        .on("mouseover", function (d) {
+          div.transition()
+            .duration(200)
+            .style("opacity", .9);
           div.text(d.text)
-           .style("left", (d3.event.pageX) + "px")
-           .style("top", (d3.event.pageY - 28) + "px");
-	})
-	// fade out tooltip on mouse out
-    	.on("mouseout", function(d) {
-        div.transition()
-           .duration(500)
-           .style("opacity", 0);
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY - 28) + "px");
+        })
+        // fade out tooltip on mouse out
+        .on("mouseout", function (d) {
+          div.transition()
+            .duration(500)
+            .style("opacity", 0);
+        });
+
+      var selmodel = SelectionModel();
+
+      svg.append("g")
+        .attr('transform', `translate(${width - margin.right - 150}, 10)`)
+        // Add legend content; call with both container element and selection model.
+        .call(container => legend(container, selmodel)); // <-- invoke legend helper
+
+      selmodel.on('change.chart', () => {
+        pointCircles.attr('fill', d => selmodel.has(d.label) ? color(d.label) : '#ccc');
+      });
+
     });
-	
-// parse dateTime
-//   var dateTime = svg.append("g").attr("class", "dateTime")
-//  		   .data(data)
-//  		   .enter()
-//   		   .data(d => parseDate(d.created_at))
-//		   .append("g")
 
-  var selmodel = SelectionModel();
-
-  svg.append("g")
-    .attr('transform', `translate(${width - margin.right - 150}, 10)`)
-    // Add legend content; call with both container element and selection model.
-    .call(container => legend(usaProjection, selmodel)); // <-- invoke legend helper
-
-  selmodel.on('change.chart', () => {
-    pointCircles.attr('fill', d => selmodel.has(d.label) ? color(d.label) : '#ccc');
-  });
-	
-});
-	
-// add zoom interaction
-var zoom = d3.zoom()
+    // add zoom interaction
+    var zoom = d3.zoom()
       .scaleExtent([1, 8])
-      .on('zoom', function() {
-          svg.selectAll('path')
-           .attr('transform', d3.event.transform);
-          svg.selectAll("circle")
-           .attr('transform', d3.event.transform);
-          svg.selectAll("text")
-           .attr('transform', d3.event.transform);
-});
+      .on('zoom', function () {
+        svg.selectAll('path')
+          .attr('transform', d3.event.transform);
+        svg.selectAll("circle")
+          .attr('transform', d3.event.transform);
+        svg.selectAll("text")
+          .attr('transform', d3.event.transform);
+      });
 
-svg.call(zoom);
-</script>
+    svg.call(zoom);
+  </script>
 
 <div id="container1" style="display:inline-block; vertical-align:top;" class="wrapper">
-	<img class="to_the_left" style="vertical-align:middle" src='https://github.com/biribirii/CSE512_spr2022/blob/main/transformer_sentiment_pie.jpg?raw=true' alt='piechart'/>
-	<span class="paragraph" style="vertical-align:middle; font-family:Sans-Serif; color:black"><br>We performed sentiment analysis of Tweets queried from the Twitter API if they had mention of #SOTU, #StateoftheUnion, or "Biden", between 2022-03-01 00:00:00 to 2022-03-07 11:59:00. Queried Tweets could not be retweets, must have a corresponding geotag, and written in English. Sentiment analysis was performed with an out-of-the-box transformer model (Hugging Face). The default sentiment analysis pretrained model was used. Text input to the model were not further cleaned. Each corresponding sentiment label ("POSITIVE" or "NEGATIVE") has a corresponding score. For both labels, scores < 0.90 were re-labeled as "NEUTRAL". The model classified majority of Tweets as "NEGATIVE", followed by "POSITIVE", and lastly "NEUTRAL".</span> 
-	<div class="clear"></div>
+    <img class="to_the_left" style="vertical-align:middle" src='https://github.com/biribirii/CSE512_spr2022/blob/main/transformer_sentiment_pie.jpg?raw=true' alt='piechart'/>
+	   <span class="paragraph" style="vertical-align:middle; font-family:Sans-Serif; color:black"><br>We performed sentiment analysis of Tweets queried from the Twitter API if they had mention of #SOTU, #StateoftheUnion, or "Biden", between 2022-03-01 00:00:00 to 2022-03-07 11:59:00. Queried Tweets could not be retweets, must have a corresponding geotag, and written in English. Sentiment analysis was performed with an out-of-the-box transformer model (Hugging Face). The default sentiment analysis pretrained model was used. Text input to the model were not further cleaned. Each corresponding sentiment label ("POSITIVE" or "NEGATIVE") has a corresponding score. For both labels, scores < 0.90 were re-labeled as "NEUTRAL". The model classified majority of Tweets as "NEGATIVE", followed by "POSITIVE", and lastly "NEUTRAL".</span>
+    <div class="clear"></div>
 </div>
-	
+
 </body>
 </html>
