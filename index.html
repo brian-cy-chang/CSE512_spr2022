@@ -349,7 +349,13 @@ var zoom = d3.zoom()
 svg.call(zoom);
 </script>
 
-<div style="text-align: center;"><img src='https://github.com/biribirii/CSE512_spr2022/blob/main/transformer_sentiment_pie.jpg?raw=true' alt='piechart'></div>
+<div id="container1" style="white-space:nowrap">
+	<div id="image" style="display:inline;">
+		<img src='https://github.com/biribirii/CSE512_spr2022/blob/main/transformer_sentiment_pie.jpg?raw=true' alt='piechart'>
+	</div>
+	<div id="texts" style="display:inline; white-space:nowrap;">
+		We performed sentiment analysis of Tweets queried from the Twitter API if they had mention of #SOTU, #StateoftheUnion, or "Biden", between 2022-03-01 00:00:00 to 2022-03-07 11:59:00. 
+	</div>
 
 </body>
 </html>
