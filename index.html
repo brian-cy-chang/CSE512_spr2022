@@ -56,7 +56,7 @@
       padding: 0;
       top: 2vw;
       left: 2vw;
-      translate: (-2vw, 2vw)
+      translate: (1vmax, 1vmax)
     }
   </style>
 
@@ -259,8 +259,8 @@
           .attr('fill', 'black')
           .attr('font-family', 'Sans-Serif')
           .attr('font-weight', 'bold')
-          .attr('font-size', '12px')
-          .text('Region');
+          .attr('font-size', '1.3vmax')
+          .text('Sentiments');
 
         // The "on" method registers event listeners
         // We update the selection model in response
@@ -284,7 +284,7 @@
           .attr('y', baselineOffset)
           .attr('fill', 'black')
           .attr('font-family', 'Helvetica Neue, Arial')
-          .attr('font-size', '11px')
+          .attr('font-size', '1.3vmax')
           .style('user-select', 'none')
           .text(d => d.label);
 
@@ -333,7 +333,7 @@
       var selmodel = SelectionModel();
 
       svg.append("g")
-        .attr('transform', `translate(${width - margin.right - 150}, 10)`)
+        .attr('transform', `translate(${width/3}, 10)`)
         // Add legend content; call with both container element and selection model.
         .call(container => legend(container, selmodel)); // <-- invoke legend helper
 
