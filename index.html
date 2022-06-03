@@ -11,6 +11,7 @@
     width: 30%;
     max-width: 50%;
     height: auto;
+    float: left;
 }
 
   h1 {
@@ -350,11 +351,9 @@ var zoom = d3.zoom()
 svg.call(zoom);
 </script>
 
-<div id="container1" style="display:inline-block;vertical-align:top;">
-	<div id="image" style="float: left">
-		<img src='https://github.com/biribirii/CSE512_spr2022/blob/main/transformer_sentiment_pie.jpg?raw=true' alt='piechart'/>
-	</div>
-		<p class='paragraph'>We performed sentiment analysis of Tweets queried from the Twitter API if they had mention of #SOTU, #StateoftheUnion, or "Biden", between 2022-03-01 00:00:00 to 2022-03-07 11:59:00.</p> 
+<div id="container1" style="display:inline-block; vertical-align:top;" class="wrapper">
+	<img class="to_the_left" src='https://github.com/biribirii/CSE512_spr2022/blob/main/transformer_sentiment_pie.jpg?raw=true' alt='piechart'/>
+	<p class='paragraph'>We performed sentiment analysis of Tweets queried from the Twitter API if they had mention of #SOTU, #StateoftheUnion, or "Biden", between 2022-03-01 00:00:00 to 2022-03-07 11:59:00.</p> 
 	<div class="clear"></div>
 </div>
 	
