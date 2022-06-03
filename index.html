@@ -232,13 +232,15 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
   .domain(data.map(d => d.label))
   .range(["rgb(255,0,0)","rgb(69,69,69)","rgb(0,0,255)"]) // try other schemes, too!	
 	
-  function legend(container, selmodel) {
+  // container is a d3 selection for the container group (<g>) element
+// selmodel is a selection model instance for tracking selected legend entries
+function legend(container, selmodel) {
   const titlePadding = 14;
   const entrySpacing = 16;
   const entryRadius = 5;
   const labelOffset = 4;
   const baselineOffset = 4;
-      
+  
   const title = container.append('text')
     .attr('x', 0)
     .attr('y', 0)
@@ -247,21 +249,21 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
     .attr('font-weight', 'bold')
     .attr('font-size', '12px')
     .text('Region');
-      
+  
   // The "on" method registers event listeners
   // We update the selection model in response
   const entries = container.selectAll('g')
-    .data(data)
+    .data(regions)
     .join('g')
-    .attr('transform', d => `translate(0, ${titlePadding + d.index * entrySpacing})`)
-    .on('click', (e, d) => selmodel.toggle(d.label)) // <-- respond to clicks
-    .on('dblclick', () => selmodel.clear());         // <-- respond to double clicks
-      
+      .attr('transform', d => `translate(0, ${titlePadding + d.label * entrySpacing})`)
+      .on('click', (e, d) => selmodel.toggle(d.label)) // <-- respond to clicks
+      .on('dblclick', () => selmodel.clear());         // <-- respond to double clicks
+  
   const symbols = entries.append('circle')
     .attr('cx', entryRadius)
     .attr('r', entryRadius)
     .attr('fill', d => color(d.label));
-      
+  
   const labels = entries.append('text')
     .attr('x', 2 * entryRadius + labelOffset)
     .attr('y', baselineOffset)
