@@ -242,14 +242,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
   
   var dateTime = d3.extent(data, d => formatDate(parseDate(d.created_at)));
   var timeInitial = data.filter(d => formatDate(parseDate(d.created_at) === dateTime[0]));
-  
-  // console.log(timeInitial);
-	
-  timeFilter = Scrubber(
-  d3.range(dateTime[0], dateTime[1] + 1, 2), // min to max years in 5 year increments
-  { autoplay: false, delay: 500, loop: false } // experiment with these settings!
-	)
-  
+    
  // container is a d3 selection for the container group (<g>) element
 // selmodel is a selection model instance for tracking selected legend entries
 function legend(container, selmodel) {
@@ -272,9 +265,13 @@ function legend(container, selmodel) {
   // We update the selection model in response
   const entries = container.selectAll('g')
     .data(data)
+    .data(["NEGATIVE", "NEUTRAL", "POSITIVE"].map((d, index) => ({
+            label: d, // converts the array of label strings into an array of objects
+            index: index,
+          })))
     .join('g')
       .attr('transform', d => `translate(0, ${titlePadding + d.label * entrySpacing})`)
-      .on('click', (e, d) => selmodel.toggle(d.label)) // <-- respond to clicks
+      .on('click', (d) => selmodel.toggle(d.label)) // <-- respond to clicks
       .on('dblclick', () => selmodel.clear());         // <-- respond to double clicks
   
   const symbols = entries.append('circle')
@@ -304,8 +301,8 @@ function legend(container, selmodel) {
   ["NEGATIVE", 'rgb(255,0,0)']
 	]);
 
-  svg.append("g").attr("class", "coordinates")
-    .selectAll("g.circles")
+  const pointCircles = svg.append("g").attr("class", "coordinates")
+    .selectAll("circle")
     .data(data)
     .enter()
     .append("circle")
@@ -316,7 +313,7 @@ function legend(container, selmodel) {
                 return usaProjection([d.lon, d.lat])[1];
     })
     .attr("r", (width/450))
-    .style("fill", d => color(d.label))
+    .attr("fill", d => color(d.label))
       .style("opacity", 0.50)
       .on("mouseover", function(d) {
     	div.transition()
@@ -345,10 +342,10 @@ function legend(container, selmodel) {
   svg.append("g")
     .attr('transform', `translate(${width - margin.right - 150}, 10)`)
     // Add legend content; call with both container element and selection model.
-    .call(container => legend(usaProjection, selmodel)); // <-- invoke legend helper
+    .call(container => legend(container, selmodel)); // <-- invoke legend helper
 
   selmodel.on('change.chart', () => {
-    data.attr('fill', d => selmodel.has(d.label) ? color(d.label) : '#ccc');
+    pointCircles.attr('fill', d => selmodel.has(d.label) ? color(d.label) : '#ccc');
   });
 	
 });
