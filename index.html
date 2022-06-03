@@ -342,7 +342,7 @@ function legend(container, selmodel) {
   svg.append("g")
     .attr('transform', `translate(${width - margin.right - 150}, 10)`)
     // Add legend content; call with both container element and selection model.
-    .call(container => legend(container, selmodel)); // <-- invoke legend helper
+    .call(container => legend(usaProjection, selmodel)); // <-- invoke legend helper
 
   selmodel.on('change.chart', () => {
     pointCircles.attr('fill', d => selmodel.has(d.label) ? color(d.label) : '#ccc');
