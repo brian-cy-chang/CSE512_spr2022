@@ -154,7 +154,7 @@ d3.json(geoJsonUrl).then(states => {
 });
 
 // dateTime parser
-var parseDate = d3.utcParse("%Y-%m-%d %H:%M:%S%Z")
+var parseDate = d3.utcParse("%Y-%m-%dT%H:%M:%S%Z")
 
 // selection model function
 function SelectionModel(values) {
