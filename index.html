@@ -332,7 +332,7 @@
       var selmodel = SelectionModel();
 
       svg.append("g")
-        .attr('transform', `translate(${width - margin.left - (width/4)}, {height - margin.top - (height/2)})`)
+        .attr('transform', `translate(${width - margin.left - (width/4)}, 20)`)
         // Add legend content; call with both container element and selection model.
         .call(container => legend(container, selmodel)) // <-- invoke legend helper
 	.append("g")
