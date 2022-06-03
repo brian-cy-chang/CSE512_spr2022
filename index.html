@@ -239,7 +239,8 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
   .domain(data.map(d => d.label))
   .range(["rgb(255,0,0)","rgb(69,69,69)","rgb(0,0,255)"])
   
-  var dateTime = d3.select("svg").append("g").data(data).enter().range(data => return parseDate.parse(d.created_at))
+  var dateTime =d3.extent(data, d => parseDate.parse(d.created_at))
+  
   console.log(dateTime)
   
  // container is a d3 selection for the container group (<g>) element
