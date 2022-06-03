@@ -247,8 +247,8 @@
         .range(["rgb(255,0,0)", "rgb(69,69,69)", "rgb(0,0,255)"]) // try other schemes, too!
 
       function legend(container, selmodel) {
-        const titlePadding = (width/10);
-        const entrySpacing = (width/10);
+        const titlePadding = (width/40);
+        const entrySpacing = (width/40);
         const entryRadius = (width/400);
         const labelOffset = 4;
         const baselineOffset = 4;
@@ -333,7 +333,7 @@
       var selmodel = SelectionModel();
 
       svg.append("g")
-        .attr('transform', `translate(${width/3}, {height/2})`)
+        .attr('transform', `translate(${width/5}, {height/2})`)
         // Add legend content; call with both container element and selection model.
         .call(container => legend(container, selmodel)); // <-- invoke legend helper
 
