@@ -205,8 +205,8 @@
 
     // colorLegend function
     function colorLegend(container) {
-      const titlePadding = 14;  // padding between title and entries
-      const entrySpacing = 16;  // spacing between legend entries
+      const titlePadding = (width/10);  // padding between title and entries
+      const entrySpacing = (width/10);  // spacing between legend entries
       const entryRadius = 5;    // radius of legend entry marks
       const labelOffset = 4;    // additional horizontal offset of text labels
       const baselineOffset = 4; // text baseline offset, depends on radius and font size
@@ -247,9 +247,9 @@
         .range(["rgb(255,0,0)", "rgb(69,69,69)", "rgb(0,0,255)"]) // try other schemes, too!
 
       function legend(container, selmodel) {
-        const titlePadding = 14;
-        const entrySpacing = 16;
-        const entryRadius = 5;
+        const titlePadding = (width/10);
+        const entrySpacing = (width/10);
+        const entryRadius = (width/400);
         const labelOffset = 4;
         const baselineOffset = 4;
 
@@ -333,7 +333,7 @@
       var selmodel = SelectionModel();
 
       svg.append("g")
-        .attr('transform', `translate(${width/3}, 10)`)
+        .attr('transform', `translate(${width/3}, {height/2})`)
         // Add legend content; call with both container element and selection model.
         .call(container => legend(container, selmodel)); // <-- invoke legend helper
 
