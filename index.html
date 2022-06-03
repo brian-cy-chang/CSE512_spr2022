@@ -190,14 +190,14 @@ function SelectionModel(values) {
 }
 	
 // colorLegend function
-function colorLegend(svg) {
+function colorLegend(container) {
   const titlePadding = 14;  // padding between title and entries
   const entrySpacing = 16;  // spacing between legend entries
   const entryRadius = 5;    // radius of legend entry marks
   const labelOffset = 4;    // additional horizontal offset of text labels
   const baselineOffset = 4; // text baseline offset, depends on radius and font size
 
-  const title = svg.append('text')
+  const title = container.append('text')
     .attr('x', 0)
     .attr('y', 0)
     .attr('fill', 'black')
@@ -206,7 +206,7 @@ function colorLegend(svg) {
     .attr('font-size', '12px')
     .text('Sentiments');
 
-  const entries = svg.selectAll('g')
+  const entries = container.selectAll('g')
     .data(data)
     .join('g')
       .attr('transform', d => `translate(0, ${titlePadding + d.index * entrySpacing})`);
@@ -232,14 +232,14 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
   .domain(data.map(d => d.label))
   .range(["rgb(255,0,0)","rgb(69,69,69)","rgb(0,0,255)"]) // try other schemes, too!	
 	
-  function legend(svg, selmodel) {
+  function legend(container, selmodel) {
   const titlePadding = 14;
   const entrySpacing = 16;
   const entryRadius = 5;
   const labelOffset = 4;
   const baselineOffset = 4;
       
-  const title = svg.append('text')
+  const title = container.append('text')
     .attr('x', 0)
     .attr('y', 0)
     .attr('fill', 'black')
@@ -250,7 +250,7 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
       
   // The "on" method registers event listeners
   // We update the selection model in response
-  const entries = svg.selectAll('g')
+  const entries = container.selectAll('g')
     .data(data)
     .join('g')
     .attr('transform', d => `translate(0, ${titlePadding + d.index * entrySpacing})`)
