@@ -144,9 +144,8 @@
     // Request the GeoJSON
     d3.json("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/northamerica.json").then(geojson => {
 
-      var base = svg.append("g").attr("class", "basemap");
       // Tell D3 to render a path for each GeoJSON feature
-      base.selectAll("path")
+       svg.append("g").selectAll("path").attr("class", "basemap")
         .data(geojson.features)
         .enter()
         .append("path")
@@ -158,7 +157,7 @@
 
     d3.json(geoJsonUrl).then(states => {
       // Tell D3 to render a path for each GeoJSON feature
-      svg.append("g").selectAll("path")
+      svg.append("g").selectAll("path").attr("class", "states")
         .data(states.features)
         .enter()
         .append("path")
@@ -258,7 +257,7 @@
           .attr('x', 0)
           .attr('y', 0)
           .attr('fill', 'black')
-          .attr('font-family', 'Helvetica Neue, Arial')
+          .attr('font-family', 'Sans-Serif')
           .attr('font-weight', 'bold')
           .attr('font-size', '12px')
           .text('Region');
