@@ -87,6 +87,8 @@ div.tooltip {
 
 <script type="module">
 
+import {Scrubber} from "@mbostock/scrubber";	
+
 // var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 var width = window.innerWidth;
 	
@@ -244,8 +246,6 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
   var timeInitial = data.filter(d => formatDate(parseDate(d.created_at) === dateTime[0]));
   
   // console.log(timeInitial);
-  
-  import {Scrubber} from "@mbostock/scrubber"	
 	
   yearFilter = Scrubber(
   d3.range(dateTime[0], dateTime[1] + 1, 2), // min to max years in 5 year increments
