@@ -237,12 +237,18 @@ d3.csv("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/df_all.c
   .range(["rgb(255,0,0)","rgb(69,69,69)","rgb(0,0,255)"]);
   
   // dateTime parser
+  var formatDate = d3.timeFormat("%Y-%m-%dT%H");	
   var parseDate = d3.utcParse("%Y-%m-%dT%H:%M:%S%Z");
   
-  var dateTime = d3.extent(data, d => parseDate(d.created_at));
-  var timeInitial = data.filter(d => parseDate(d.created_at) === dateTime[0])
+  var dateTime = d3.extent(data, d => formatDate(parseDate(d.created_at)));
+  var timeInitial = data.filter(d => formatDate(parseDate(d.created_at) === dateTime[0]));
   
   console.log(timeInitial);
+	
+  yearFilter = Scrubber(
+  d3.range(dateTime[0], dateTime[1] + 1, 5), // min to max years in 5 year increments
+  { autoplay: false, delay: 500, loop: false } // experiment with these settings!
+	)
   
  // container is a d3 selection for the container group (<g>) element
 // selmodel is a selection model instance for tracking selected legend entries
