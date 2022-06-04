@@ -148,7 +148,7 @@
         .append("path")
         .attr("d", pathGenerator) // This is where the magic happens
         .style("stroke", "#B2BEB5")
-        .style("stroke-width", "1.5")
+        .style("stroke-width", "1.8")
         .attr("fill", "white") // Color uses to fill in the lines
     });
 
@@ -160,17 +160,17 @@
         .append("path")
         .attr("d", pathGenerator) // This is where the magic happens
         .style("stroke", "#B2BEB5")
-        .style("stroke-width", "1.5")
+        .style("stroke-width", "1.8")
         .attr("fill", "#27285C") // Color uses to fill in the lines
         .on('mouseover', function(d, i) {
                 var currentState = this;
-                d3.select(this).style('fill-opacity', 1);
+                d3.select(this).style('fill-opacity', 0.5);
                 })
                 .on('mouseout', function(d, i) {
 
                     d3.selectAll('path')
                             .style({
-                                'fill-opacity':.7
+                                'fill-opacity':1
                             });
                 });
     });
