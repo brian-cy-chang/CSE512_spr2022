@@ -13,7 +13,8 @@
       max-width: 50%;
       height: auto;
       float: left;
-      vertical-align: middle;
+      vertical-align:middle;
+      clear: both;
     }
 
     h1 {
@@ -25,16 +26,15 @@
     h3 {
       font-size: 1.6vmax;
        }
-    h4 {
-      font-size: 1.2vmax;
-       }
     p {
       font-size: 1.8vmin;
       font: sans-serif;
       }
-      span {
+    p.right {
       font-size: 1.8vmin;
       font: sans-serif;
+      overflow: auto;
+      display: block;
       }
 
     /* Style for Custom Tooltip */
@@ -86,6 +86,7 @@
       2022 State of the Union (SOTU). As the SOTU covered many topics, such as sanctioning Russia, rising inflation, the COVID-19 pandemic, 
       and the American Rescue Plan, we believe it is a good proxy for important domestic and foreign policies.
     </p>
+    <br>
     <h4 style="font-family:Helvetica; color:black">Interactive Visualization Instructions</h4>
     <p style="font-family:Sans-Serif; color:black; font-size: 1.3vmin">
       1) Click on a US state to see the name.
@@ -386,11 +387,7 @@
   </script>
 
 <img src="https://github.com/biribirii/CSE512_spr2022/blob/main/transformer_sentiment_pie.jpg?raw=true" alt="piechart" class="left"/>
-  <p style="vertical-align:middle; font-family:Sans-Serif; color:black; font-size: 1.6vmin;"><strong>Determing Sentiments</strong>We performed sentiment analysis of Tweets queried from the Twitter API if there was a mention of #SOTU, #StateoftheUnion, or "Biden", between 2022-03-01 00:00:00 to 2022-03-07 11:59:59. Queried Tweets could not be retweets, must have a corresponding geotag, and written in English. Sentiment analysis was performed with an out-of-the-box transformer model (Hugging Face); the default sentiment analysis pretrained model was used. Text input to the model were not cleaned. Each corresponding sentiment label ("POSITIVE" or "NEGATIVE") provides a corresponding score. For both labels, scores < 0.90 were re-labeled as "NEUTRAL".</p>
-
-</body>
-</html>
-
+  <p style="vertical-align:middle; font-family:Sans-Serif; color:black; font-size: 1.6vmin;" class="right"><strong>Determing Sentiments</strong><br>We performed sentiment analysis of Tweets queried from the Twitter API if there was a mention of #SOTU, #StateoftheUnion, or "Biden", between 2022-03-01 00:00:00 to 2022-03-07 11:59:59. Queried Tweets could not be retweets, must have a corresponding geotag, and written in English. Sentiment analysis was performed with an out-of-the-box transformer model (Hugging Face); the default sentiment analysis pretrained model was used. Text input to the model were not cleaned. Each corresponding sentiment label ("POSITIVE" or "NEGATIVE") provides a corresponding score. For both labels, scores < 0.90 were re-labeled as "NEUTRAL".</p>
 
 </body>
 </html>
