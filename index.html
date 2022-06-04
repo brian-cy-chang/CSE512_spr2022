@@ -260,6 +260,14 @@
       var color = d3.scaleOrdinal()
         .domain(data.map(d => d.label))
         .range(["rgb(255,0,0)", "rgb(69,69,69)", "rgb(0,0,255)"])
+      
+      var jitter = d3.randomNormal(0, 2)();
+      
+      var randomLon = function(d) {
+	      return (d.lon + jitter)
+      }
+      
+      console.log(randomLon)
 
       function legend(container, selmodel) {
         const titlePadding = (width/50);
