@@ -364,11 +364,9 @@
     var zoom = d3.zoom()
       .scaleExtent([1, 8])
       .on('zoom', function () {
-	svg.append("g").selectAll(".basemap")
+	svg.append("g").selectAll("path")
           .attr('transform', d3.event.transform);
-	svg.append("g").selectAll(".states")
-          .attr('transform', d3.event.transform);
-	svg.append("g").selectAll(".coordinates")
+	svg.append("g").selectAll("circle")
           .attr('transform', d3.event.transform);
       });
 
