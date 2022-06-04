@@ -333,7 +333,7 @@
       var legendHeight = height/2
 
       svg.append("g")
-        .attr('transform', `translate(${width - margin.right - (width/3)}, legendHeight)`)
+        .attr('transform', `translate(${width - margin.left - (width/3)}, legendHeight)`)
         // Add legend content; call with both container element and selection model.
         .call(container => legend(container, selmodel)) // <-- invoke legend helper
 	.append("g")
