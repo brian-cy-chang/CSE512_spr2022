@@ -385,12 +385,10 @@
     svg.call(zoom);
   </script>
 
-<div id="container1" style="display:inline-block; vertical-align:top;" class="wrapper">
-    <img class="to_the_left" style="vertical-align:middle" src='https://github.com/biribirii/CSE512_spr2022/blob/main/transformer_sentiment_pie.jpg?raw=true' alt='piechart'/>
-	<h3 style="font-family:Helvetica; color:black">Determining Sentiments</h3>
-	   <p class="paragraph" style="vertical-align:middle; font-family:Sans-Serif; color:black; font-size: 1.6vmin;">We performed sentiment analysis of Tweets queried from the Twitter API if there was a mention of #SOTU, #StateoftheUnion, or "Biden", between 2022-03-01 00:00:00 to 2022-03-07 11:59:59. Queried Tweets could not be retweets, must have a corresponding geotag, and written in English. Sentiment analysis was performed with an out-of-the-box transformer model (Hugging Face); the default sentiment analysis pretrained model was used. Text input to the model were not cleaned. Each corresponding sentiment label ("POSITIVE" or "NEGATIVE") provides a corresponding score. For both labels, scores < 0.90 were re-labeled as "NEUTRAL".</p>
-    <div class="clear"></div>
-</div>
+<img style="vertical-align:middle" align="left" src='https://github.com/biribirii/CSE512_spr2022/blob/main/transformer_sentiment_pie.jpg?raw=true' alt='piechart'/>
+  <h3 style="font-family:Helvetica; color:black">Determining Sentiments</h3>
+	<p class="paragraph" style="vertical-align:middle; font-family:Sans-Serif; color:black; font-size: 1.6vmin;">We performed sentiment analysis of Tweets queried from the Twitter API if there was a mention of #SOTU, #StateoftheUnion, or "Biden", between 2022-03-01 00:00:00 to 2022-03-07 11:59:59. Queried Tweets could not be retweets, must have a corresponding geotag, and written in English. Sentiment analysis was performed with an out-of-the-box transformer model (Hugging Face); the default sentiment analysis pretrained model was used. Text input to the model were not cleaned. Each corresponding sentiment label ("POSITIVE" or "NEGATIVE") provides a corresponding score. For both labels, scores < 0.90 were re-labeled as "NEUTRAL".
+     	</p>
 
 </body>
 </html>
