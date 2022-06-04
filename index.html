@@ -174,7 +174,7 @@
         // fade out tooltip on mouse out
         .on("mousemove", function (d) {
           div.transition()
-            .duration(500)
+            .duration(400)
             .style("opacity", 0);
 	});
     });
@@ -327,7 +327,7 @@
         .attr("r", (width / 450))
         .attr("fill", d => color(d.label))
         .style("opacity", 0.50)
-        .on("mouseover", function (d) {
+        .on("click", function (d) {
           div.transition()
             .duration(200)
             .style("opacity", .9);
@@ -338,7 +338,7 @@
         // fade out tooltip on mouse out
         .on("mouseout", function (d) {
           div.transition()
-            .duration(500)
+            .duration(400)
             .style("opacity", 0);
         });
 
