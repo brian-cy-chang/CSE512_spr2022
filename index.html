@@ -338,7 +338,6 @@
       selmodel.on('change.chart', () => {
         pointCircles.attr('fill', d => selmodel.has(d.label) ? color(d.label) : '#FAF9F6');
       });
-
     });
 
     // add zoom interaction
@@ -352,6 +351,8 @@
 	svg.selectAll("circle")
           .attr('transform', d3.event.transform);
 	svg.selectAll("selmodel")
+          .attr('transform', d3.event.transform);
+	svg.selectAll("container")
           .attr('transform', d3.event.transform);
       });
 
