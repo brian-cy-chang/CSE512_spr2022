@@ -259,7 +259,9 @@
 
       var color = d3.scaleOrdinal()
         .domain(data.map(d => d.label))
-        .range(["rgb(255,0,0)", "rgb(69,69,69)", "rgb(0,0,255)"]) // try other schemes, too!
+        .range(["rgb(255,0,0)", "rgb(69,69,69)", "rgb(0,0,255)"])
+      
+      var jitter = () => Math.random()*1
 
       function legend(container, selmodel) {
         const titlePadding = (width/50);
@@ -322,10 +324,10 @@
         .enter()
         .append("circle")
         .attr("cx", function (d) {
-          return usaProjection([d.lon, d.lat])[0];
+          return usaProjection(([d.lon, d.lat])[0] + jitter);
         })
         .attr("cy", function (d) {
-          return usaProjection([d.lon, d.lat])[1];
+          return usaProjection(([d.lon, d.lat])[1] + jitter);
         })
         .attr("r", (width / 450))
         .attr("fill", d => color(d.label))
