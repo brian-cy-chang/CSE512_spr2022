@@ -153,6 +153,7 @@
     });
 
     d3.json(geoJsonUrl).then(states => {
+      console.log(states);
       // Tell D3 to render a path for each GeoJSON feature
       svg.append("g").selectAll("path").attr("class", "states")
         .data(states.features)
