@@ -364,9 +364,9 @@
     var zoom = d3.zoom()
       .scaleExtent([1, 8])
       .on('zoom', function () {
-	svg.selectAll("path")
+	svg.selectAll("g.path")
           .attr('transform', d3.event.transform);
-	svg.selectAll("circles")
+	svg.selectAll("g.circles")
           .attr('transform', d3.event.transform);
 	svg.select("g.container")
           .attr('transform', d3.event.transform);
