@@ -51,11 +51,9 @@
 
     /* Legend Position Style */
     .legend {
-      position: relative;
+      position: absolute;
       width: 100%;
       padding: 0;
-      top: 2vw;
-      left: 2vw;
     }
   </style>
 
@@ -330,7 +328,6 @@
         });
 
       var selmodel = SelectionModel();
-      var legendHeight = (height - margin.top - (height/2))
 
       svg.append("g")
         .attr('transform', `translate(${width - margin.left - (width/3)}, legendHeight)`)
