@@ -261,7 +261,9 @@
         .domain(data.map(d => d.label))
         .range(["rgb(255,0,0)", "rgb(69,69,69)", "rgb(0,0,255)"])
       
-      var jitter = () => Math.random()*1
+      function jitter(max) {
+	 return Math.floor(Math.random()*max);
+      }
 
       function legend(container, selmodel) {
         const titlePadding = (width/50);
@@ -324,10 +326,10 @@
         .enter()
         .append("circle")
         .attr("cx", function (d) {
-          return usaProjection(([d.lon, d.lat])[0] + jitter);
+          return usaProjection(([d.lon, d.lat])[0] + jitter(5));
         })
         .attr("cy", function (d) {
-          return usaProjection(([d.lon, d.lat])[1] + jitter);
+          return usaProjection(([d.lon, d.lat])[1] + jitter(5));
         })
         .attr("r", (width / 450))
         .attr("fill", d => color(d.label))
