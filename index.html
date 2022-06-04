@@ -164,11 +164,11 @@
         .attr("fill", "#27285C") // Color uses to fill in the lines
         .on('mouseover', function(d, i) {
                 var currentState = this;
-                d3.select(this).style('fill-opacity', 0.5);
+                d3.select(this).style('fill-opacity', 0.7);
                 })
                 .on('mouseout', function(d, i) {
 
-                    d3.selectAll('path')
+                    d3.selectAll('g')
                             .style({
                                 'fill-opacity':1
                             });
