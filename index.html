@@ -349,11 +349,11 @@
 
       var selmodel = SelectionModel();
 
-      svg.append("g")
+      svg.append("h")
         .attr('transform', `translate(${width - (margin.left/1.6) - (width/6)}, 45)`)
         // Add legend content; call with both container element and selection model.
         .call(container => legend(container, selmodel)) // <-- invoke legend helper
-	.append("g")
+	.append("h")
 
       selmodel.on('change.chart', () => {
         pointCircles.attr('fill', d => selmodel.has(d.label) ? color(d.label) : '#FAF9F6');
@@ -369,10 +369,6 @@
 	svg.selectAll("g")
           .attr('transform', d3.event.transform);
 	svg.selectAll("circle")
-          .attr('transform', d3.event.transform);
-	svg.selectAll("selmodel")
-          .attr('transform', d3.event.transform);
-	svg.selectAll("container")
           .attr('transform', d3.event.transform);
       });
 
