@@ -364,11 +364,11 @@
     var zoom = d3.zoom()
       .scaleExtent([1, 8])
       .on('zoom', function () {
-	g.select(".basemap")
+	g.selectAll(".basemap")
           .attr('transform', d3.event.transform);
-	g.select(".states")
+	g.selectAll(".states")
           .attr('transform', d3.event.transform);
-	g.select(".coordinates")
+	g.selectAll(".coordinates")
           .attr('transform', d3.event.transform);
       });
 
