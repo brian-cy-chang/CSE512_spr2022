@@ -299,7 +299,7 @@
         const labels = entries.append('text')
           .attr('x', 2 * entryRadius + labelOffset)
           .attr('y', baselineOffset)
-          .attr('fill', 'black')
+          .attr('fill', d => color(d.label))
           .attr('font-family', 'Sans-Serif')
           .attr('font-size', '1.0vmax')
           .style('user-select', 'none')
@@ -307,8 +307,8 @@
 
         // Listen to selection model, update symbol and labels upon changes
         selmodel.on('change.legend', () => {
-          symbols.attr('fill', d => selmodel.has(d.label) ? color(d.label) : '#ccc');
-          labels.attr('fill', d => selmodel.has(d.label) ? 'black' : '#bbb');
+         // symbols.attr('fill', d => selmodel.has(d.label) ? color(d.label) : '#ccc');
+          labels.attr('fill', d => selmodel.has(d.label) ? color(d.label) : '#bbb');
         });
       }
 
