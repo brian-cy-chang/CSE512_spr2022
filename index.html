@@ -330,7 +330,7 @@
         });
 
       var selmodel = SelectionModel();
-      var legendHeight = height/2
+      var legendHeight = (height - margin.top - (height/2))
 
       svg.append("g")
         .attr('transform', `translate(${width - margin.left - (width/3)}, legendHeight)`)
