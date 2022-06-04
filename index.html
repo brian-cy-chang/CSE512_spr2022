@@ -291,10 +291,10 @@
           .on('click', (d) => selmodel.toggle(d.label)) // <-- respond to clicks
           .on('dblclick', () => selmodel.clear());         // <-- respond to double clicks
 
-        const symbols = entries.append('circle')
-          .attr('cx', entryRadius)
-          .attr('r', entryRadius)
-          .attr('fill', d => color(d.label));
+        //const symbols = entries.append('circle')
+        //  .attr('cx', entryRadius)
+        //  .attr('r', entryRadius)
+        //  .attr('fill', d => color(d.label));
 
         const labels = entries.append('text')
           .attr('x', 2 * entryRadius + labelOffset)
@@ -302,6 +302,7 @@
           .attr('fill', d => color(d.label))
           .attr('font-family', 'Sans-Serif')
           .attr('font-size', '1.0vmax')
+	  .attr('font-weight', 'bold')
           .style('user-select', 'none')
           .text(d => d.label);
 
