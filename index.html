@@ -329,9 +329,9 @@
         .attr("cy", function (d) {
           return usaProjection([d.lon, d.lat])[1];
         })
-        .attr("r", (width / 450))
+        .attr("r", (width / 500))
         .attr("fill", d => color(d.label))
-        .style("opacity", 0.50)
+        .style("opacity", 0.40)
         .on("click", function (d) {
           div.transition()
             .duration(200)
