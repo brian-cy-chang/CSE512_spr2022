@@ -326,10 +326,10 @@
         .enter()
         .append("circle")
         .attr("cx", function (d) {
-          return usaProjection([(d.lon + jitter(10)), (d.lat + jitter(10))])[0];
+          return usaProjection(([(d.lon + jitter(10)), d.lat])[0];
         })
         .attr("cy", function (d) {
-          return usaProjection([(d.lon + jitter(10)), (d.lat + jitter(10))])[1];
+          return usaProjection(([d.lon, d.lat])[1];
         })
         .attr("r", (width / 450))
         .attr("fill", d => color(d.label))
