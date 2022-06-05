@@ -251,6 +251,7 @@ d3.json(geoJsonUrl).then(states => {
 
                 var currentState = this;
                 d3.select(this).style('fill-opacity', 0.4);
+      	    })
 	.on('mouseout', function(d) {
 
                 d3.selectAll('path')
