@@ -195,7 +195,7 @@
         .attr("d", pathGenerator) // This is where the magic happens
         .style("stroke", "#B2BEB5")
         .style("stroke-width", "1.8")
-        .attr("fill", "white") // Color uses to fill in the lines
+        .attr("fill", "#27285C") // Color uses to fill in the lines
     });
 
     d3.json(geoJsonUrl).then(states => {
@@ -221,7 +221,17 @@
         .on("mousemove", function (d) {
           div.transition()
             .duration(250)
-            .style("opacity", 0);
+            .style("opacity", 0.3);
+	.on('mouseover', function(d, i) {
+
+                var currentState = this;
+                d3.select(this).style('fill-opacity', 1);
+                })
+                .on('mouseout', function(d, i) {
+                    d3.selectAll('path')
+                            .style({
+                                'fill-opacity':1.0
+                            });
 	});
     });
 
