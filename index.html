@@ -209,7 +209,18 @@
         .style("stroke", "#B2BEB5")
         .style("stroke-width", "1.8")
         .attr("fill", "white") // Color uses to fill in the lines
-	      .on("click", function (d) {
+	.on('mouseover', function(d) {
+
+            var currentState = this;
+            d3.select(this)
+	       .style('fill-opacity', 1);
+            })
+        .on('mouseout', function(d) {
+            d3.selectAll('path')
+               .style({
+                  'fill-opacity':1.0
+            })
+	.on("click", function (d) {
           div.transition()
             .duration(200)
             .style("opacity", .9);
@@ -222,16 +233,6 @@
           div.transition()
             .duration(250)
             .style("opacity", 0.3);
-	.on('mouseover', function(d, i) {
-
-                var currentState = this;
-                d3.select(this).style('fill-opacity', 1);
-                })
-                .on('mouseout', function(d, i) {
-                    d3.selectAll('path')
-                            .style({
-                                'fill-opacity':1.0
-                            });
 	});
     });
 
