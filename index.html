@@ -184,6 +184,29 @@
     var padding = 40
     margin = ({ top: 20, right: 30, bottom: 30, left: 40 })
 
+    function addEvents(selection) {
+	selection.on("click", function (d) {
+          div.transition()
+            .duration(200)
+            .style("opacity", .9);
+          div.text(d.properties.name)
+            .style("left", (d3.event.pageX + 28) + "px")
+            .style("top", (d3.event.pageY - 28) + "px");
+        })
+	selection.on("mousemove", function (d) {
+          div.transition()
+            .duration(250)
+            .style("opacity", 0);
+	})
+	selection..on('mouseover', function(d) {
+          var currentState = this;
+          d3.select(this).style('fill-opacity', 0.4);
+        })
+	selection..on('mouseout', function(d, i) {
+          d3.selectAll('path')
+            .style('fill-opacity', 1);
+        });
+	
     // Request the GeoJSON
     d3.json("https://raw.githubusercontent.com/biribirii/CSE512_spr2022/main/northamerica.json").then(geojson => {
 
@@ -195,7 +218,7 @@
         .attr("d", pathGenerator) // This is where the magic happens
         .style("stroke", "#B2BEB5")
         .style("stroke-width", "1.8")
-        .attr("fill", "white") // Color uses to fill in the lines
+        .attr("fill", "#000000") // Color uses to fill in the lines
     });
 
     d3.json(geoJsonUrl).then(states => {
@@ -208,21 +231,8 @@
         .attr("d", pathGenerator) // This is where the magic happens
         .style("stroke", "#B2BEB5")
         .style("stroke-width", "1.8")
-        .attr("fill", "white") // Color uses to fill in the lines
-	      .on("click", function (d) {
-          div.transition()
-            .duration(200)
-            .style("opacity", .9);
-          div.text(d.properties.name)
-            .style("left", (d3.event.pageX + 28) + "px")
-            .style("top", (d3.event.pageY - 28) + "px");
-        })
-        // fade out tooltip on mouse out
-        .on("mousemove", function (d) {
-          div.transition()
-            .duration(250)
-            .style("opacity", 0);
-	});
+        .attr("fill", "#000000") // Color uses to fill in the lines
+	.call(addEvents);
     });
 
     // Parse Datetime
