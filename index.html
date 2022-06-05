@@ -217,26 +217,44 @@ d3.json(geoJsonUrl).then(states => {
         .append("path")
         .attr("d", pathGenerator) // This is where the magic happens
         .style("stroke", "#B2BEB5")
+        .style("stroke-width", "1.8")
+        .attr("fill", "#E695B5") // Color uses to fill in the lines
+	      .on("click", function (d) {
+          div.transition()
+            .duration(200)
+            .style("opacity", .9);
+          div.text(d.properties.name)
+            .style("left", (d3.event.pageX + 45) + "px")
+            .style("top", (d3.event.pageY - 28) + "px");
+        })
+        // fade out tooltip on mouse out
+        .on("mousemove", function (d) {
+          div.transition()
+            .duration(250)
+            .style("opacity", 0);
+	});
+    });
+	
+	
+d3.json(geoJsonUrl).then(states => {
+      // console.log(states);
+      // Tell D3 to render a path for each GeoJSON feature
+      svg.append("g").selectAll("path").attr("class", "states_hover")
+        .data(states.features)
+        .enter()
+        .append("path")
+        .attr("d", pathGenerator) // This is where the magic happens
+        .style("stroke", "#B2BEB5")
         .style("stroke-width", "2.0")
         .attr("fill", "#E695B5") // Color uses to fill in the lines
 	.on('mouseover', function(d) {
 
                 var currentState = this;
                 d3.select(this).style('fill-opacity', 0.4);
-	      div.transition()
-            .duration(200)
-            .style("opacity", .9);
-          div.text(d.properties.name)
-            .style("left", (d3.event.pageX + 45) + "px")
-            .style("top", (d3.event.pageY - 28) + "px");
-            })
 	.on('mouseout', function(d) {
 
                 d3.selectAll('path')
                   .style('fill-opacity', 1.0);
-	      div.transition()
-            .duration(250)
-            .style("opacity", 0);
            });
     });
 	
