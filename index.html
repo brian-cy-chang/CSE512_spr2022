@@ -185,7 +185,7 @@
     margin = ({ top: 20, right: 30, bottom: 30, left: 40 })
 
     function addEvents(selection) {
-	selection.on("click.name", function (d) {
+	selection.on("mouseover.name", function (d) {
           div.transition()
             .duration(200)
             .style("opacity", .9);
@@ -193,7 +193,7 @@
             .style("left", (d3.event.pageX + 28) + "px")
             .style("top", (d3.event.pageY - 28) + "px");
         })
-	selection.on("mousemove.name", function (d) {
+	selection.on("mouseout.name", function (d) {
           div.transition()
             .duration(250)
             .style("opacity", 0);
