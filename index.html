@@ -185,7 +185,7 @@
     margin = ({ top: 20, right: 30, bottom: 30, left: 40 })
 
     function addEvents(selection) {
-	selection.on("mouseover.name", function (d) {
+	selection.on("click.name", function (d) {
           div.transition()
             .duration(200)
             .style("opacity", .9);
@@ -193,7 +193,7 @@
             .style("left", (d3.event.pageX + 28) + "px")
             .style("top", (d3.event.pageY - 28) + "px");
         })
-	selection.on("mouseout.name", function (d) {
+	selection.on("mousemove.name", function (d) {
           div.transition()
             .duration(250)
             .style("opacity", 0);
@@ -218,8 +218,8 @@
         .append("path")
         .attr("d", pathGenerator) // This is where the magic happens
         .style("stroke", "#B2BEB5")
-        .style("stroke-width", "1.8")
-        .attr("fill", "#000000") // Color uses to fill in the lines
+        .style("stroke-width", "2.0")
+        .attr("fill", "white") // Color uses to fill in the lines
 	.on('mouseover', function(d) {
           var currentState = this;
           d3.select(this).style('fill-opacity', 0.4);
@@ -239,8 +239,8 @@
         .append("path")
         .attr("d", pathGenerator) // This is where the magic happens
         .style("stroke", "#B2BEB5")
-        .style("stroke-width", "1.8")
-        .attr("fill", "#000000") // Color uses to fill in the lines
+        .style("stroke-width", "2.0")
+        .attr("fill", "white") // Color uses to fill in the lines
 	.call(addEvents);
     });
 
