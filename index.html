@@ -13,7 +13,7 @@
       max-width: 50%;
       height: auto;
       float: left;
-      vertical-align:middle;
+      vertical-align: middle;
       clear: both;
       padding: 0.5vmin;
       margin: 0.8vmin;
@@ -26,6 +26,17 @@
       float: right;
       vertical-align: middle;
       clear: both;
+    }
+	  
+    img.center {
+      width: 50%;
+      max-width: 50%;
+      height: auto;
+      float: middle;
+      vertical-align: middle;
+      clear: both;
+      padding: 0.5vmin;
+      margin: 0.8vmin;
     }
 
     h1 {
@@ -52,6 +63,14 @@
       font: sans-serif;
       padding: 0.8vmax;
       margin: 0.8vmax;
+      }
+    p.center {
+      font-size: 1.8vmin;
+      font: sans-serif;
+      overflow: auto;
+      display: block;
+      padding: 1.1vmax;
+      margin: 1.1vmax;
       }
     p.right {
       font-size: 1.8vmin;
@@ -418,14 +437,12 @@
 </script>
 
 <div>
-<img src="https://github.com/biribirii/CSE512_spr2022/blob/main/transformer_sentiment_pie.png?raw=true" alt="piechart" class="left"/>
-<img src="https://github.com/biribirii/CSE512_spr2022/blob/main/pos_wc.png?raw=true" alt="wordcloud" class="left"/>
-  <p style="vertical-align:middle; font-family:Sans-Serif; color:black; font-size: 1.8vmin;" class="right"><strong style="font-size: 1.8vmin">Determing Sentiments</strong><br>We performed sentiment analysis of tweets queried from the Twitter API if there was a mention of #SOTU, #StateoftheUnion, or "Biden", between 2022-03-01 00:00:00 to 2022-03-07 11:59:59. Queried tweets could not be retweets, must have a corresponding geotag, and written in English. Sentiment analysis was performed with an out-of-the-box transformer model (Hugging Face); the default sentiment analysis pretrained model was used. Text input to the model were not cleaned. Each corresponding sentiment label ("POSITIVE" or "NEGATIVE") provides a corresponding score. For both labels, scores < 0.90 were re-labeled as "NEUTRAL".
-  <br><br><br>
-	  <strong style="font-size: 1.8vmin">Common Themes</strong><br>
-    We generated word clouds to see if there were common themes or topics for each sentiment. A word cloud counts the number of occurrences of words, displaying words with higher counts in larger text. On the left, the word cloud for "POSITIVE" tweets does not demonstrate many common themes or topics. There are mentions of several, prominent progressive figures, such as Stephen Colbert and Rachel Maddow. This aligns with the more progressive, liberal demographic of the Democractic party, which we expect views President Biden more positively. However, with respect to policies, the only word is "medication". The same was observed for "NEUTRAL" and "NEGATIVE" word clouds (not pictured).
-    <br><br><br>
-    <strong style="font-size: 1.8vmin">Design Rationale</strong><br>
+<img src="https://github.com/biribirii/CSE512_spr2022/blob/main/transformer_sentiment_pie.png?raw=true" alt="piechart" class="center"/>
+	<p style="vertical-align:middle; font-family:Sans-Serif; color:black; font-size: 1.8vmin;" class="center"><strong style="font-size: 1.8vmin">Determing Sentiments</strong><br>We performed sentiment analysis of tweets queried from the Twitter API if there was a mention of #SOTU, #StateoftheUnion, or "Biden", between 2022-03-01 00:00:00 to 2022-03-07 11:59:59. Queried tweets could not be retweets, must have a corresponding geotag, and written in English. Sentiment analysis was performed with an out-of-the-box transformer model (Hugging Face); the default sentiment analysis pretrained model was used. Text input to the model were not cleaned. Each corresponding sentiment label ("POSITIVE" or "NEGATIVE") provides a corresponding score. For both labels, scores < 0.90 were re-labeled as "NEUTRAL".</p>
+<img src="https://github.com/biribirii/CSE512_spr2022/blob/main/pos_wc.png?raw=true" alt="wordcloud" class="center"/>
+	<p style="vertical-align:middle; font-family:Sans-Serif; color:black; font-size: 1.8vmin;" class="center"><strong style="font-size: 1.8vmin"><strong style="font-size: 1.8vmin">Common Themes</strong><br>We generated word clouds to see if there were common themes or topics for each sentiment. A word cloud counts the number of occurrences of words, displaying words with higher counts in larger text. On the left, the word cloud for "POSITIVE" tweets does not demonstrate many common themes or topics. There are mentions of several, prominent progressive figures, such as Stephen Colbert and Rachel Maddow. This aligns with the more progressive, liberal demographic of the Democractic party, which we expect views President Biden more positively. However, with respect to policies, the only word is "medication". The same was observed for "NEUTRAL" and "NEGATIVE" word clouds (not pictured).</p>
+		
+    	<p style="vertical-align:middle; font-family:Sans-Serif; color:black; font-size: 1.8vmin;" class="center"><strong style="font-size: 1.8vmin">Design Rationale</strong><br>
     INSERT DESIGN RATIONALE HERE
   </p>
 </div>
