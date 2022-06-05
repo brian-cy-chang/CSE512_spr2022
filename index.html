@@ -131,12 +131,12 @@
 
   <!-- Uncomment if using d3: -->
 
-  <script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
 
   <!-- style type="text/css">
 </style-->
 
-  <script type="text/javascript">
+<script type="text/javascript">
 
     // var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     var width = window.innerWidth;
@@ -196,6 +196,17 @@
         .style("stroke", "#B2BEB5")
         .style("stroke-width", "1.8")
         .attr("fill", "#27285C") // Color uses to fill in the lines
+	.on('mouseover', function(d) {
+
+            var currentState = this;
+            d3.select(this)
+	       .style('fill-opacity', 0.3);
+            })
+         .on('mouseout', function(d) {
+            d3.selectAll('path')
+               .style({
+                  'fill-opacity': 1.0
+            });
     });
 
     d3.json(geoJsonUrl).then(states => {
@@ -208,7 +219,7 @@
         .attr("d", pathGenerator) // This is where the magic happens
         .style("stroke", "#B2BEB5")
         .style("stroke-width", "1.8")
-        .attr("fill", "white") // Color uses to fill in the lines
+        .attr("fill", "#27285C") // Color uses to fill in the lines
 	      .on("click", function (d) {
           div.transition()
             .duration(200)
@@ -222,18 +233,7 @@
           div.transition()
             .duration(250)
             .style("opacity", 0);
-	       })
-         .on('mouseover', function(d) {
-
-            var currentState = this;
-            d3.select(this)
-	       .style('fill-opacity', 1);
-            })
-         .on('mouseout', function(d) {
-            d3.selectAll('path')
-               .style({
-                  'fill-opacity':1.0
-            });
+	 });
     });
 
     // Parse Datetime
