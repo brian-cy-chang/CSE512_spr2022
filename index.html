@@ -226,23 +226,17 @@
           div.text(d.properties.name)
             .style("left", (d3.event.pageX + 28) + "px")
             .style("top", (d3.event.pageY - 28) + "px");
+	  var currentState = this;
+          d3.select(this).style('fill-opacity', 0.4);    
         })
         // fade out tooltip on mouse out
-        .on("mousemove", function (d) {
+        .on("mouseout", function (d) {
           div.transition()
             .duration(250)
             .style("opacity", 0);
-	})
-        .on('mouseover', function(d) {
-
-                var currentState = this;
-                d3.select(this).style('fill-opacity', 0.4);
-            })
-	.on('mouseout', function(d) {
-
-                d3.selectAll('path')
+	  d3.selectAll('path')
                   .style('fill-opacity', 1.0)
-           });
+	});
     });
 
     // Parse Datetime
