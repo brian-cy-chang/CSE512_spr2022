@@ -209,31 +209,31 @@
         .style("stroke", "#B2BEB5")
         .style("stroke-width", "1.8")
         .attr("fill", "white") // Color uses to fill in the lines
-	.on('mouseover', function(d) {
-
-            var currentState = this;
-            d3.select(this)
-	       .style('fill-opacity', 1);
-            })
-        .on('mouseout', function(d) {
-            d3.selectAll('path')
-               .style({
-                  'fill-opacity':1.0
-            })
-	.on("click", function (d) {
+	      .on("click", function (d) {
           div.transition()
             .duration(200)
             .style("opacity", .9);
           div.text(d.properties.name)
-            .style("left", (d3.event.pageX + 45) + "px")
+            .style("left", (d3.event.pageX + 60) + "px")
             .style("top", (d3.event.pageY - 28) + "px");
         })
         // fade out tooltip on mouse out
         .on("mousemove", function (d) {
           div.transition()
             .duration(250)
-            .style("opacity", 0.3);
-	});
+            .style("opacity", 0);
+	       })
+         .on('mouseover', function(d) {
+
+            var currentState = this;
+            d3.select(this)
+	       .style('fill-opacity', 1);
+            })
+         .on('mouseout', function(d) {
+            d3.selectAll('path')
+               .style({
+                  'fill-opacity':1.0
+            });
     });
 
     // Parse Datetime
