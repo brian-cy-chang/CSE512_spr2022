@@ -198,11 +198,11 @@
             .duration(250)
             .style("opacity", 0);
 	})
-	selection..on('mouseover', function(d) {
+	selection.on('mouseover', function(d) {
           var currentState = this;
           d3.select(this).style('fill-opacity', 0.4);
         })
-	selection..on('mouseout', function(d, i) {
+	selection.on('mouseout', function(d, i) {
           d3.selectAll('path')
             .style('fill-opacity', 1);
         });
