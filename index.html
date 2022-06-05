@@ -195,7 +195,17 @@
         .attr("d", pathGenerator) // This is where the magic happens
         .style("stroke", "#B2BEB5")
         .style("stroke-width", "1.8")
-        .attr("fill", "white") // Color uses to fill in the lines
+        .attr("fill", "#27285C") // Color uses to fill in the lines
+	.on('mouseover', function(d) {
+
+                var currentState = this;
+                d3.select(this).style('fill-opacity', 0.4);
+            })
+	.on('mouseout', function(d) {
+
+                d3.selectAll('path')
+                  .style('fill-opacity', 1.0)
+           });
     });
 
     d3.json(geoJsonUrl).then(states => {
